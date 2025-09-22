@@ -3,276 +3,293 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>🏋️‍♀️ Your Club Name</title>
-  <meta name="description" content="Official club website with news, schedule, and videos." />
-  <meta property="og:title" content="Your Club Name" />
-  <meta property="og:description" content="Official club website with news, schedule, and videos." />
+  <title>CI Club</title>
+  <meta name="description" content="Club website with schedule, contact, and videos." />
+  <meta name="theme-color" content="#ef4444" />
+  <meta property="og:title" content="CI Club" />
+  <meta property="og:description" content="Schedule, contact, and videos." />
   <meta property="og:type" content="website" />
   <meta property="og:image" content="/og.png" />
+  <link rel="preconnect" href="https://www.youtube.com" crossorigin>
   <style>
-    :root {
-      --bg: #0b0d10;
-      --card: #11151a;
-      --text: #e6edf3;
-      --muted: #9fb2c0;
-      --brand: #5ad67d;
-      --brand-2: #2db3ff;
-      --ring: rgba(45, 179, 255, 0.45);
+    :root{
+      /* --- Red theme --- */
+      --bg:#0c0b0c;          /* page background */
+      --surface:#141014;     /* cards & header */
+      --text:#f3eef0;        /* primary text */
+      --muted:#c9b9be;       /* secondary text */
+      --brand:#ef4444;       /* main red */
+      --brand-2:#f87171;     /* lighter red */
+      --ring:rgba(239, 68, 68, .5);
+      --border:rgba(255,255,255,.1);
+      --shadow:0 10px 24px rgba(0,0,0,.28);
     }
 
-    * { box-sizing: border-box; }
-    html, body { height: 100%; }
-    body {
-      margin: 0;
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
-      color: var(--text);
-      background: radial-gradient(1200px 800px at 20% -10%, rgba(45,179,255,.12), transparent 60%),
-                  radial-gradient(800px 600px at 110% 10%, rgba(90,214,125,.10), transparent 60%),
-                  var(--bg);
-      line-height: 1.55;
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;line-height:1.6;color:var(--text);
+      background:
+        radial-gradient(1000px 700px at 10% -10%, rgba(239,68,68,.10), transparent 60%),
+        radial-gradient(800px 600px at 110% 0%, rgba(248,113,113,.08), transparent 60%),
+        var(--bg);
     }
+    img{max-width:100%;display:block}
+    a{color:var(--brand-2);text-decoration:none}
+    a:hover{text-decoration:underline}
+    .container{max-width:1000px;margin:0 auto;padding:0 20px}
 
-    a { color: var(--brand-2); text-decoration: none; }
-    a:hover { text-decoration: underline; }
-
-    .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
-
-    /* Nav */
-    .nav {
-      position: sticky; top: 0; z-index: 40;
-      backdrop-filter: blur(8px);
-      background: rgba(11,13,16,0.65);
-      border-bottom: 1px solid rgba(255,255,255,0.06);
-    }
-    .nav-inner { display: flex; align-items: center; justify-content: space-between; padding: 14px 0; }
-    .brand { display: flex; align-items: center; gap: 10px; font-weight: 700; letter-spacing: .2px; }
-    .logo {
-      width: 34px; height: 34px; border-radius: 10px;
-      background: linear-gradient(135deg, var(--brand), var(--brand-2));
-      box-shadow: 0 0 0 6px rgba(45,179,255,0.07);
-    }
-    .menu { display: flex; gap: 18px; }
-    .menu a { color: var(--text); opacity: .9; }
-    .menu a.active { color: var(--brand); }
-    .menu-btn { display: none; }
+    /* Header */
+    header.site{position:sticky;top:0;z-index:30;background:rgba(20,16,20,.72);backdrop-filter:blur(10px);border-bottom:1px solid var(--border)}
+    .nav{display:flex;align-items:center;justify-content:space-between;padding:14px 0}
+    .brand{display:flex;align-items:center;gap:12px;font-weight:700}
+    .brand img{height:36px;width:auto;border-radius:8px;box-shadow:0 0 0 3px rgba(239,68,68,.12)}
+    .brand-name{letter-spacing:.2px}
+    .nav-links{display:flex;gap:18px}
+    .nav-links a{color:var(--text);opacity:.92}
+    .nav-toggle{display:none}
 
     /* Hero */
-    .hero { padding: 72px 0 40px; text-align: center; }
-    .hero h1 { font-size: clamp(28px, 4vw, 44px); margin: 0 0 10px; }
-    .hero p { color: var(--muted); margin: 0 auto 22px; max-width: 720px; }
-    .cta-row { display: inline-flex; gap: 12px; flex-wrap: wrap; }
-    .btn {
-      display: inline-flex; align-items: center; gap: 10px; padding: 12px 16px; border-radius: 14px; font-weight: 600;
-      background: var(--brand); color: #07140c; border: 1px solid rgba(255,255,255,0.1);
-      box-shadow: 0 10px 20px rgba(90,214,125,0.15), inset 0 0 0 1px rgba(0,0,0,.2);
-    }
-    .btn.secondary { background: #151a20; color: var(--text); border: 1px solid rgba(255,255,255,0.08); }
+    .hero{padding:56px 0 24px;text-align:center}
+    .hero h1{font-size:clamp(28px,4vw,40px);margin:0 0 8px}
+    .hero p{color:var(--muted);margin:0 auto 18px;max-width:720px}
+    .cta{display:inline-flex;gap:12px;flex-wrap:wrap}
+    .btn{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:12px;border:1px solid var(--border);background:var(--brand);color:#2a0c0c;font-weight:700;box-shadow:var(--shadow)}
+    .btn.ghost{background:transparent;color:var(--text)}
 
     /* Sections */
-    section { padding: 40px 0; }
-    .card { background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.0)); border: 1px solid rgba(255,255,255,0.08); border-radius: 16px; padding: 18px; }
-    .grid { display: grid; gap: 18px; }
-    .grid.two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-    .grid.three { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    section{padding:28px 0}
+    h2{font-size:20px;margin:0 0 10px}
+    .card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:16px;box-shadow:var(--shadow)}
+    .grid{display:grid;gap:16px}
+    .two{grid-template-columns:repeat(2,minmax(0,1fr))}
 
-    /* Videos */
-    .video-embed, .playlist-embed { aspect-ratio: 16/9; width: 100%; border: 0; border-radius: 14px; box-shadow: 0 0 0 6px rgba(45,179,255,0.04); }
+    /* Embeds */
+    .embed{aspect-ratio:16/9;width:100%;border:0;border-radius:12px;overflow:hidden}
 
     /* Table */
-    table { width: 100%; border-collapse: collapse; }
-    th, td { text-align: left; padding: 10px 12px; }
-    thead th { position: sticky; top: 62px; background: #0e1317; border-bottom: 1px solid rgba(255,255,255,0.1); }
-    tbody tr { border-bottom: 1px solid rgba(255,255,255,0.06); }
+    table{width:100%;border-collapse:collapse}
+    th,td{text-align:left;padding:10px 12px}
+    thead th{background:#161116;position:sticky;top:60px;border-bottom:1px solid var(--border)}
+    tbody tr{border-bottom:1px solid var(--border)}
 
     /* Footer */
-    footer { color: var(--muted); padding: 40px 0 60px; text-align: center; }
+    footer{color:var(--muted);padding:36px 0 56px;text-align:center}
 
     /* Responsive */
-    @media (max-width: 860px) {
-      .menu { display: none; }
-      .menu-btn { display: inline-flex; }
-      .grid.two { grid-template-columns: 1fr; }
-      .grid.three { grid-template-columns: 1fr; }
-      thead th { top: 58px; }
+    @media (max-width:840px){
+      .nav-links{display:none}
+      .nav-toggle{display:inline-flex}
+      .two{grid-template-columns:1fr}
+      thead th{top:58px}
     }
 
-    /* Focus ring */
-    :focus-visible {
-      outline: 2px solid var(--ring);
-      outline-offset: 2px;
-      border-radius: 10px;
-    }
+    :focus-visible{outline:2px solid var(--ring);outline-offset:2px;border-radius:10px}
   </style>
 </head>
 <body>
-  <!-- Config: set your club name & YouTube details here -->
   <script>
-    const CLUB_NAME = "Your Club Name";                 // e.g., "Downtown Weightlifting Club"
-    const CHANNEL_ID = "UCxxxxxxxxxxxxxxxx";            // Your YouTube Channel ID (starts with UC...)
-    // Optional: If you know your channel's uploads playlist ID, set PLAYLIST_ID directly (starts with UU...)
-    // If left blank, the script will auto-derive it by swapping UC -> UU
-    const PLAYLIST_ID = "";                              
-    const YOUTUBE_CHANNEL_URL = `https://www.youtube.com/channel/${CHANNEL_ID}`;
+    /* =====================
+       CONFIG — EDIT ONLY THIS OBJECT
+       ===================== */
+    const CONFIG = {
+      clubName: "CI Club",                // Shown in header & footer
+      // Use one of the following:
+      channelId: "UC3EnVXpZZ2f3pTmMMZJzWLg", // UC… id for your channel (auto-derives UU… uploads playlist)
+      playlistId: "",                     // If you prefer a specific playlist: PL… (custom) or UU… (uploads)
+      featuredVideoId: "",                // Optional single video id for the Featured section
+      links: {
+        email: "info@yourclub.org",
+        instagram: "https://instagram.com/yourclub",
+        address: "123 Training Ave, Your City",
+        contactForm: "https://forms.gle/"
+      },
+      schedule: [
+        { day: "Monday",    time: "6:00–8:00 PM",  location: "Main Gym",  notes: "Open training" },
+        { day: "Wednesday", time: "6:00–8:00 PM",  location: "Main Gym",  notes: "Coach-led session" },
+        { day: "Saturday",  time: "9:30–11:30 AM", location: "Main Gym",  notes: "Team practice" },
+      ],
+      coaches: [
+        "Coach A — NCCP Trained, 10+ yrs experience",
+        "Coach B — Sports Physio & Technique Specialist"
+      ]
+    };
 
-    // Optional: hero video to feature (latest or a trailer)
-    const FEATURED_VIDEO_ID = ""; // e.g., "dQw4w9WgXcQ"; leave blank to hide featured video
+    /* ====== No edits below unless you want to customize behavior ====== */
+    const $ = (s,root=document)=>root.querySelector(s);
+    const $$ = (s,root=document)=>Array.from(root.querySelectorAll(s));
 
     document.addEventListener('DOMContentLoaded', () => {
-      document.querySelectorAll('[data-club-name]').forEach(el => el.textContent = CLUB_NAME);
-      const channelLinks = document.querySelectorAll('[data-channel-link]');
-      channelLinks.forEach(el => {
-        el.href = YOUTUBE_CHANNEL_URL;
-        el.target = '_blank';
-        el.rel = 'noopener noreferrer';
-      });
+      // Brand text
+      $$('.brand-name,[data-club-name]').forEach(el => el.textContent = CONFIG.clubName);
 
-      // Build uploads playlist id (UU...) if not provided
-      let uploadsId = PLAYLIST_ID && PLAYLIST_ID.startsWith('UU') ? PLAYLIST_ID :
-                      (CHANNEL_ID && CHANNEL_ID.startsWith('UC') ? 'UU' + CHANNEL_ID.substring(2) : '');
+      // Logo: hide if not found
+      const logo = $('#club-logo');
+      if (logo) logo.onerror = () => { logo.style.display = 'none'; };
 
-      // Set playlist embed
-      const playlistFrame = document.getElementById('playlist-frame');
-      if (playlistFrame && uploadsId) {
-        playlistFrame.src = `https://www.youtube.com/embed/videoseries?list=${uploadsId}`;
-        playlistFrame.title = "YouTube playlist";
-      } else if (playlistFrame) {
-        // Fallback: show instructions card if IDs missing
-        document.getElementById('playlist-card').innerHTML = `
-          <div class="card">
-            <h3>Connect YouTube</h3>
-            <p>Set <code>CHANNEL_ID</code> above (starts with <code>UC...</code>). The site will auto-embed your uploads playlist (<code>UU...</code>).</p>
-            <p>Find your Channel ID at <a href="https://studio.youtube.com" target="_blank" rel="noopener">YouTube Studio → Settings → Channel → Advanced settings</a>.</p>
-          </div>`;
-      }
+      // Channel / playlist links
+      const channelUrl = CONFIG.channelId ? `https://www.youtube.com/channel/${CONFIG.channelId}` : '#';
+      $$('[data-channel-link]').forEach(a => { a.href = channelUrl; a.target = '_blank'; a.rel='noopener noreferrer'; });
 
-      // Set featured video embed if provided
-      const featuredWrap = document.getElementById('featured');
-      if (FEATURED_VIDEO_ID) {
-        featuredWrap.innerHTML = `
+      // Populate schedule
+      const tbody = $('#schedule-body');
+      tbody.innerHTML = CONFIG.schedule.map(r => `<tr><td>${r.day}</td><td>${r.time}</td><td>${r.location}</td><td>${r.notes||''}</td></tr>`).join('');
+
+      // Populate coaches
+      const coachesList = $('#coaches-list');
+      coachesList.innerHTML = CONFIG.coaches.map(c => `<li>${c}</li>`).join('');
+
+      // Contact
+      $('#email-link').href = `mailto:${CONFIG.links.email}`;
+      $('#email-link').textContent = CONFIG.links.email;
+      $('#insta-link').href = CONFIG.links.instagram;
+      $('#address-text').textContent = CONFIG.links.address;
+      $('#form-link').href = CONFIG.links.contactForm;
+
+      // Featured video
+      const featured = $('#featured');
+      if (CONFIG.featuredVideoId) {
+        featured.innerHTML = `
           <div class="card">
             <h3 style="margin:6px 0 10px;">Featured Video</h3>
-            <iframe class="video-embed" loading="lazy" allowfullscreen
-              src="https://www.youtube.com/embed/${FEATURED_VIDEO_ID}"></iframe>
+            <iframe class="embed" loading="lazy" allowfullscreen src="https://www.youtube.com/embed/${CONFIG.featuredVideoId}"></iframe>
           </div>`;
       } else {
-        featuredWrap.remove();
+        featured.remove();
       }
 
-      // Mobile menu toggle
-      const toggler = document.getElementById('menu-toggle');
-      const mobileMenu = document.getElementById('mobile-menu');
-      toggler?.addEventListener('click', () => {
-        const open = mobileMenu.getAttribute('data-open') === 'true';
-        mobileMenu.setAttribute('data-open', String(!open));
-        mobileMenu.style.display = open ? 'none' : 'flex';
+      // Compute playlist id preference
+      const uploadsId = CONFIG.playlistId?.length
+        ? CONFIG.playlistId
+        : (CONFIG.channelId?.startsWith('UC') ? 'UU' + CONFIG.channelId.slice(2) : '');
+
+      // Mount YouTube playlist (random start + shuffle for PL when possible)
+      mountYouTubePlaylist(uploadsId);
+
+      // Mobile nav toggle
+      const toggle = $('#nav-toggle');
+      const menu = $('#nav-menu');
+      toggle?.addEventListener('click', () => {
+        const open = menu.style.display === 'flex';
+        menu.style.display = open ? 'none' : 'flex';
       });
+
+      // Year
+      $('#year').textContent = new Date().getFullYear();
     });
+
+    // === IFrame API playlist loader ===
+    function mountYouTubePlaylist(playlistId){
+      if (!playlistId) return;
+      const isCustomPlaylist = playlistId.startsWith('PL');
+      const randomIndex = Math.floor(Math.random() * 50);
+      const tag = document.createElement('script');
+      tag.src = 'https://www.youtube.com/iframe_api';
+      document.head.appendChild(tag);
+      window.onYouTubeIframeAPIReady = function(){
+        const player = new YT.Player('playlist-player', {
+          width:'100%', height:'100%',
+          playerVars:{ listType:'playlist', list: playlistId, autoplay:1, mute:1, rel:0, modestbranding:1, playsinline:1 },
+          events:{
+            onReady: () => {
+              try { if (isCustomPlaylist && typeof player.setShuffle === 'function') player.setShuffle(true); } catch(e){}
+              try { player.playVideoAt(randomIndex); } catch(e){}
+            }
+          }
+        });
+      }
+    }
   </script>
 
-  <!-- Nav -->
-  <nav class="nav">
-    <div class="container nav-inner">
-      <div class="brand">
-        <div class="logo" aria-hidden="true"></div>
-        <span data-club-name>Your Club Name</span>
-      </div>
-      <div class="menu">
-        <a href="#home" class="active">Home</a>
+  <!-- Site Header -->
+  <header class="site">
+    <div class="container nav">
+      <a class="brand" href="#home" aria-label="Home">
+        <!-- Put your logo file at images/logo.png (relative to index.html) -->
+        <img id="club-logo" src="images/logo.png" alt="Club logo" />
+        <span class="brand-name">CI Club</span>
+      </a>
+      <nav class="nav-links">
         <a href="#videos">Videos</a>
         <a href="#schedule">Schedule</a>
         <a href="#about">About</a>
         <a href="#contact">Contact</a>
         <a data-channel-link href="#">YouTube ↗</a>
-      </div>
-      <button id="menu-toggle" class="menu-btn btn secondary" aria-label="Toggle menu">Menu</button>
+      </nav>
+      <button id="nav-toggle" class="nav-toggle btn ghost" aria-label="Toggle menu">Menu</button>
     </div>
-    <div id="mobile-menu" class="container" style="display:none; gap:10px; padding-bottom:12px;" data-open="false">
-      <a href="#home">Home</a>
+    <div id="nav-menu" class="container nav-links" style="display:none;gap:14px;padding:0 0 12px">
       <a href="#videos">Videos</a>
       <a href="#schedule">Schedule</a>
       <a href="#about">About</a>
       <a href="#contact">Contact</a>
       <a data-channel-link href="#">YouTube ↗</a>
     </div>
-  </nav>
-
-  <!-- Hero -->
-  <header id="home" class="hero container">
-    <h1><span data-club-name>Your Club Name</span></h1>
-    <p>Welcome to our club! We share training sessions, announcements, and event recaps. Check out the latest videos and come lift with us.</p>
-    <div class="cta-row">
-      <a class="btn" data-channel-link href="#">Visit our YouTube</a>
-      <a class="btn secondary" href="#schedule">See Schedule</a>
-    </div>
   </header>
 
+  <!-- Hero -->
+  <section id="home" class="hero container">
+    <h1><span data-club-name>CI Club</span></h1>
+    <p>Training schedule, contact info, and the latest videos — simple and fast.</p>
+    <div class="cta">
+      <a class="btn" data-channel-link href="#">Visit YouTube</a>
+      <a class="btn ghost" href="#schedule">See Schedule</a>
+    </div>
+  </section>
+
   <main class="container">
-    <!-- Featured Video (optional via FEATURED_VIDEO_ID) -->
+    <!-- Featured (optional) -->
     <section id="featured"></section>
 
     <!-- Videos / Playlist -->
     <section id="videos">
-      <h2 style="margin:0 0 12px;">Latest Videos</h2>
-      <div id="playlist-card" class="card">
-        <iframe id="playlist-frame" class="playlist-embed" loading="lazy" allowfullscreen></iframe>
-        <p style="margin-top:10px; color: var(--muted);">
-          Tip: this playlist auto-shows your channel's <em>Uploads</em>. New videos appear here automatically once published on YouTube.
-        </p>
-      </div>
+      <h2>Latest Videos</h2>
+      <div id="playlist-player" class="embed"></div>
+      <noscript>
+        <div class="card">Enable JavaScript to see the video playlist.</div>
+      </noscript>
     </section>
 
-    <!-- Schedule (simple table you can edit) -->
+    <!-- Schedule -->
     <section id="schedule">
-      <h2 style="margin:0 0 12px;">Training Schedule</h2>
+      <h2>Training Schedule</h2>
       <div class="card">
         <table>
           <thead>
-            <tr>
-              <th>Day</th>
-              <th>Time</th>
-              <th>Location</th>
-              <th>Notes</th>
-            </tr>
+            <tr><th>Day</th><th>Time</th><th>Location</th><th>Notes</th></tr>
           </thead>
-          <tbody>
-            <tr><td>Monday</td><td>6:00–8:00 PM</td><td>Main Gym</td><td>Open training</td></tr>
-            <tr><td>Wednesday</td><td>6:00–8:00 PM</td><td>Main Gym</td><td>Coach-led session</td></tr>
-            <tr><td>Saturday</td><td>9:30–11:30 AM</td><td>Main Gym</td><td>Team practice</td></tr>
-          </tbody>
+          <tbody id="schedule-body"></tbody>
         </table>
       </div>
     </section>
 
-    <!-- About / Coaches -->
+    <!-- About -->
     <section id="about">
-      <h2 style="margin:0 0 12px;">About the Club</h2>
+      <h2>About the Club</h2>
       <div class="grid two">
         <div class="card">
           <p>We are a community club focused on Olympic weightlifting. All levels are welcome—from beginners to national competitors. Drop in for a trial session!</p>
         </div>
         <div class="card">
           <h3 style="margin:6px 0 10px;">Coaches</h3>
-          <ul style="margin:0; padding-left: 18px;">
-            <li>Coach A — NCCP Trained, 10+ yrs experience</li>
-            <li>Coach B — Sports Physio & Technique Specialist</li>
-          </ul>
+          <ul id="coaches-list" style="margin:0;padding-left:18px"></ul>
         </div>
       </div>
     </section>
 
     <!-- Contact -->
     <section id="contact">
-      <h2 style="margin:0 0 12px;">Contact</h2>
+      <h2>Contact</h2>
       <div class="grid two">
         <div class="card">
-          <p><strong>Email:</strong> <a href="mailto:info@yourclub.org">info@yourclub.org</a></p>
-          <p><strong>Instagram:</strong> <a href="https://instagram.com/yourclub" target="_blank" rel="noopener">@yourclub</a></p>
-          <p><strong>Address:</strong> 123 Training Ave, Your City</p>
+          <p><strong>Email:</strong> <a id="email-link" href="mailto:"></a></p>
+          <p><strong>Instagram:</strong> <a id="insta-link" href="#" target="_blank" rel="noopener">@yourclub</a></p>
+          <p><strong>Address:</strong> <span id="address-text"></span></p>
         </div>
         <div class="card">
           <h3 style="margin:6px 0 10px;">Inquiry Form</h3>
           <p>Use a simple form (e.g., Google Forms). Paste your form link below:</p>
-          <p><a href="https://forms.gle/" target="_blank" rel="noopener">Sign-up / Inquiry Form ↗</a></p>
+          <p><a id="form-link" href="#" target="_blank" rel="noopener">Sign-up / Inquiry Form ↗</a></p>
         </div>
       </div>
     </section>
@@ -280,13 +297,8 @@
 
   <footer>
     <div class="container">
-      <p>© <span id="year"></span> <span data-club-name>Your Club Name</span>. All rights reserved.</p>
-      <p>Built with ❤️ and YouTube embeds.</p>
+      <p>© <span id="year"></span> <span data-club-name>CI Club</span>. All rights reserved.</p>
     </div>
   </footer>
-
-  <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
-  </script>
 </body>
 </html>
