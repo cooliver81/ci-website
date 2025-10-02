@@ -7,12 +7,14 @@
   <meta name="description" content="Send a training inquiry to Concordia International Weightlifting Club." />
   <meta name="theme-color" content="#ef4444" />
 
-  <link rel="icon" type="image/png" sizes="32x32" href="images/logo.png" />
-  <link rel="apple-touch-icon" href="images/logo.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="../images/logo.png" />
+  <link rel="apple-touch-icon" href="../images/logo.png" />
 
   <style>
     :root{
-      --bg:#0c0b0c; --surface:#141014; --text:#f3eef0; --muted:#c9b9be; --brand:#ef4444; --brand-2:#f87171; --ring:rgba(239, 68, 68, .5); --border:rgba(255,255,255,.12); --shadow:0 10px 24px rgba(0,0,0,.28);
+      --bg:#0c0b0c; --surface:#141014; --text:#f3eef0; --muted:#c9b9be;
+      --brand:#ef4444; --brand-2:#f87171; --ring:rgba(239,68,68,.5);
+      --border:rgba(255,255,255,.12); --shadow:0 10px 24px rgba(0,0,0,.28);
     }
     *{box-sizing:border-box}
     html,body{height:100%}
@@ -84,7 +86,7 @@
           } else {
             error.style.display = 'block';
           }
-        } catch (err) {
+        } catch {
           error.style.display = 'block';
         }
       });
@@ -94,15 +96,13 @@
 <body>
   <header class="site">
     <div class="container nav">
-      <a class="brand" href="index.html" aria-label="Home">
-        <img src="images/logo.png" alt="Club logo" />
+      <a class="brand" href="../" aria-label="Home">
+        <img src="../images/logo.png" alt="Club logo" />
         <span>CONCORDIA INTERNATIONAL WEIGHTLIFTING CLUB</span>
       </a>
       <nav class="nav-links">
-        <a href="index.html#videos">Videos</a>
-        <a href="index.html#schedule">Schedule</a>
-        <a href="index.html#about">About</a>
-        <a href="index.html#contact">Contact</a>
+        <a href="../">Home</a>
+        <a href="./">Inquiry</a>
       </nav>
     </div>
   </header>
@@ -112,16 +112,16 @@
     <p class="lead">Tell us a bit about you and your goals. We’ll get back to you soon.</p>
 
     <div class="card">
-      <!-- Replace FORM_ENDPOINT with your actual Formspree endpoint -->
-      <form id="inquiry-form" action="https://formspree.io/f/mwprbnln" method="POST">
+      <!-- IMPORTANT: Replace YOUR_FORM_ID with your Formspree endpoint (e.g., https://formspree.io/f/abcxyz) -->
+      <form id="inquiry-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST" autocomplete="on" novalidate>
         <div class="row">
           <div>
             <label for="name">Full Name *</label>
             <input id="name" name="name" type="text" placeholder="Jane Doe" required>
           </div>
           <div>
-            <label for="email">Email *</label>
-            <input id="email" name="_replyto" type="email" placeholder="you@example.com" required>
+            <label for="_replyto">Email *</label>
+            <input id="_replyto" name="_replyto" type="email" placeholder="you@example.com" required>
           </div>
         </div>
 
@@ -145,13 +145,16 @@
           <textarea id="message" name="message" placeholder="Goals, injuries, availability, questions…"></textarea>
         </div>
 
+        <!-- Honeypot field (helps reduce spam) -->
+        <input type="text" name="_gotcha" style="display:none">
+
         <div class="actions">
           <button class="btn" type="submit">Send Inquiry</button>
-          <a class="btn ghost" href="index.html">Back to Home</a>
+          <a class="btn ghost" href="../">Back to Home</a>
         </div>
 
         <div id="success" class="alert success">Thanks! Your inquiry was sent successfully.</div>
-        <div id="error" class="alert error">Something went wrong. Please try again, or email us directly at <a href="mailto:ciwc2001@gmail.com">ciwc2001@gmail.com</a>.</div>
+        <div id="error" class="alert error">Something went wrong. Please try again, or email us directly at <a href="mailto:ciwc2002@gmail.com">ciwc2002@gmail.com</a>.</div>
       </form>
     </div>
   </main>
