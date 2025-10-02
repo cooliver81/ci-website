@@ -9,34 +9,23 @@
   <meta property="og:title" content="CI Club" />
   <meta property="og:description" content="Schedule, contact, and videos." />
   <meta property="og:type" content="website" />
-  <meta property="og:image" content="/og.png" />
+  <meta property="og:image" content="og.png" />
 
-  <!-- Favicon / Tab Icon (uses your logo) -->
-  <!-- Place your logo at images/logo.png (512x512 recommended) -->
   <link rel="icon" type="image/png" sizes="32x32" href="images/logo.png" />
   <link rel="apple-touch-icon" href="images/logo.png" />
-  
-  <!-- Performance hints -->
   <link rel="preconnect" href="https://www.youtube.com" crossorigin>
 
   <style>
     :root{
-      /* --- Red theme --- */
-      --bg:#0c0b0c;          /* page background */
-      --surface:#141014;     /* cards & header */
-      --text:#f3eef0;        /* primary text */
-      --muted:#c9b9be;       /* secondary text */
-      --brand:#ef4444;       /* main red */
-      --brand-2:#f87171;     /* lighter red */
-      --ring:rgba(239, 68, 68, .5);
-      --border:rgba(255,255,255,.1);
-      --shadow:0 10px 24px rgba(0,0,0,.28);
+      --bg:#0c0b0c; --surface:#141014; --text:#f3eef0; --muted:#c9b9be;
+      --brand:#ef4444; --brand-2:#f87171; --ring:rgba(239,68,68,.5);
+      --border:rgba(255,255,255,.1); --shadow:0 10px 24px rgba(0,0,0,.28);
     }
-
     *{box-sizing:border-box}
     html,body{height:100%}
     body{
-      margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;line-height:1.6;color:var(--text);
+      margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;
+      line-height:1.6;color:var(--text);
       background:
         radial-gradient(1000px 700px at 10% -10%, rgba(239,68,68,.10), transparent 60%),
         radial-gradient(800px 600px at 110% 0%, rgba(248,113,113,.08), transparent 60%),
@@ -47,7 +36,6 @@
     a:hover{text-decoration:underline}
     .container{max-width:1000px;margin:0 auto;padding:0 20px}
 
-    /* Header */
     header.site{position:sticky;top:0;z-index:30;background:rgba(20,16,20,.72);backdrop-filter:blur(10px);border-bottom:1px solid var(--border)}
     .nav{display:flex;align-items:center;justify-content:space-between;padding:14px 0}
     .brand{display:flex;align-items:center;gap:12px;font-weight:700}
@@ -55,9 +43,7 @@
     .brand-name{letter-spacing:.2px}
     .nav-links{display:flex;gap:18px}
     .nav-links a{color:var(--text);opacity:.92}
-    .nav-toggle{display:none}
 
-    /* Hero */
     .hero{padding:56px 0 24px;text-align:center}
     .hero h1{font-size:clamp(28px,4vw,40px);margin:0 0 8px}
     .hero p{color:var(--muted);margin:0 auto 18px;max-width:720px}
@@ -65,85 +51,63 @@
     .btn{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:12px;border:1px solid var(--border);background:var(--brand);color:#2a0c0c;font-weight:700;box-shadow:var(--shadow)}
     .btn.ghost{background:transparent;color:var(--text)}
 
-    /* Sections */
     section{padding:28px 0}
     h2{font-size:20px;margin:0 0 10px}
     .card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:16px;box-shadow:var(--shadow)}
     .grid{display:grid;gap:16px}
-
-    /* Embeds */
     .embed{aspect-ratio:16/9;width:100%;border:0;border-radius:12px;overflow:hidden}
 
-    /* Table */
     table{width:100%;border-collapse:collapse}
     th,td{text-align:left;padding:10px 12px}
     thead th{background:#161116;position:sticky;top:60px;border-bottom:1px solid var(--border)}
     tbody tr{border-bottom:1px solid var(--border)}
 
-    /* Footer */
     footer{color:var(--muted);padding:36px 0 56px;text-align:center}
-
-    /* Responsive */
-    @media (max-width:840px){
-      .nav-links{display:none}
-      .nav-toggle{display:inline-flex}
-      thead th{top:58px}
-    }
-
+    @media (max-width:840px){ thead th{top:58px} }
     :focus-visible{outline:2px solid var(--ring);outline-offset:2px;border-radius:10px}
   </style>
 
-  <!-- Defer JS so it doesn't block rendering -->
   <script defer>
     // ===== CONFIG — edit only this object =====
     const CONFIG = {
       clubName: "CONCORDIA INTERNATIONAL WEIGHTLIFTING CLUB",
-      // Use one of the following:
-      channelId: "UC3EnVXpZZ2f3pTmMMZJzWLg", // UC… id for your channel (auto-derives UU… uploads playlist)
-      playlistId: "",                         // If you prefer a specific playlist: PL… (custom) or UU… (uploads)
-      featuredVideoId: "",                    // Optional single video id for the Featured section
+      channelId: "UC3EnVXpZZ2f3pTmMMZJzWLg", // YouTube channel id
+      playlistId: "",                         // optional PL… or UU…
+      featuredVideoId: "",                    // optional single video id
       links: {
-        email: "ciwc2001@gmail.com",
+        email: "ciwc2002@gmail.com",
         instagram: "https://www.instagram.com/concordiaweightlifting/",
         address: "5400 Av de Westbury, Montréal, QC H3W 2Y8",
-        contactForm: "inquiry.html"
+        contactForm: "inquiry/"              // relative path
       },
       schedule: [
         { day: "Monday",    time: "4:00 PM–8:00 PM",  location: "YMHA Gym" },
         { day: "Wednesday", time: "4:00 PM–8:00 PM",  location: "YMHA Gym" },
-        { day: "Thursday",  time: "4:00 PM–8:00 PM", location: "YMHA Gym" },
-        { day: "Saturday",  time: "9:00 AM –12:00 PM", location: "YMHA Gym" },
+        { day: "Thursday",  time: "4:00 PM–8:00 PM",  location: "YMHA Gym" },
+        { day: "Saturday",  time: "9:00 AM–12:00 PM", location: "YMHA Gym" },
       ]
     };
 
-    // ===== Utilities =====
     const $ = (s,root=document)=>root.querySelector(s);
     const $$ = (s,root=document)=>Array.from(root.querySelectorAll(s));
 
     document.addEventListener('DOMContentLoaded', () => {
-      // Brand text
       $$('.brand-name,[data-club-name]').forEach(el => el.textContent = CONFIG.clubName);
 
-      // Logo: hide if not found
-      const logo = $('#club-logo');
-      if (logo) logo.onerror = () => { logo.style.display = 'none'; };
+      const logo = $('#club-logo'); if (logo) logo.onerror = () => { logo.style.display = 'none'; };
 
-      // Channel / playlist links
       const channelUrl = CONFIG.channelId ? `https://www.youtube.com/channel/${CONFIG.channelId}` : '#';
       $$('[data-channel-link]').forEach(a => { a.href = channelUrl; a.target = '_blank'; a.rel='noopener noreferrer'; });
 
-      // Populate schedule
       const tbody = $('#schedule-body');
       tbody.innerHTML = CONFIG.schedule.map(r => `<tr><td>${r.day}</td><td>${r.time}</td><td>${r.location}</td></tr>`).join('');
 
-      // Contact
       $('#email-link').href = `mailto:${CONFIG.links.email}`;
       $('#email-link').textContent = CONFIG.links.email;
       $('#insta-link').href = CONFIG.links.instagram;
       $('#address-text').textContent = CONFIG.links.address;
       $('#form-link').href = CONFIG.links.contactForm;
 
-      // Featured video
       const featured = $('#featured');
       if (CONFIG.featuredVideoId) {
         featured.innerHTML = `
@@ -155,27 +119,15 @@
         featured.remove();
       }
 
-      // Compute playlist id preference
       const uploadsId = CONFIG.playlistId?.length
         ? CONFIG.playlistId
         : (CONFIG.channelId?.startsWith('UC') ? 'UU' + CONFIG.channelId.slice(2) : '');
 
-      // Mount YouTube playlist (random start + shuffle for PL when possible)
       mountYouTubePlaylist(uploadsId);
 
-      // Mobile nav toggle
-      const toggle = $('#nav-toggle');
-      const menu = $('#nav-menu');
-      toggle?.addEventListener('click', () => {
-        const open = menu.style.display === 'flex';
-        menu.style.display = open ? 'none' : 'flex';
-      });
-
-      // Year
       $('#year').textContent = new Date().getFullYear();
     });
 
-    // === IFrame API playlist loader ===
     function mountYouTubePlaylist(playlistId){
       if (!playlistId) return;
       const isCustomPlaylist = playlistId.startsWith('PL');
@@ -199,67 +151,48 @@
   </script>
 </head>
 <body>
-  <!-- Site Header -->
   <header class="site">
     <div class="container nav">
-      <a class="brand" href="#home" aria-label="Home">
+      <a class="brand" href="./" aria-label="Home">
         <img id="club-logo" src="images/logo.png" alt="Club logo" />
         <span class="brand-name">Concordia International</span>
       </a>
       <nav class="nav-links">
-        <a href="#videos">Videos</a>
-        <a href="#schedule">Schedule</a>
-        <a href="#about">About</a>
-        <a href="#contact">Contact</a>
+        <a href="./">Home</a>
+        <a href="inquiry/">Inquiry</a>
         <a data-channel-link href="#">YouTube ↗</a>
       </nav>
     </div>
-    <div id="nav-menu" class="container nav-links" style="display:none;gap:14px;padding:0 0 12px">
-      <a href="#videos">Videos</a>
-      <a href="#schedule">Schedule</a>
-      <a href="#about">About</a>
-      <a href="#contact">Contact</a>
-      <a data-channel-link href="#">YouTube ↗</a>
-    </div>
   </header>
 
-  <!-- Hero -->
-  <section id="home" class="hero container">
+  <section class="hero container">
     <h1><span data-club-name>Concordia International</span></h1>
     <p>Check out our latest videos, training schedule, and contact info!</p>
     <div class="cta">
       <a class="btn" data-channel-link href="#">Visit YouTube</a>
-      <a class="btn ghost" href="#schedule">See Schedule</a>
+      <a class="btn ghost" href="inquiry/">Contact / Inquiry</a>
     </div>
   </section>
 
   <main class="container">
-    <!-- Featured (optional) -->
     <section id="featured"></section>
 
-    <!-- Videos / Playlist -->
     <section id="videos">
       <h2>Latest Videos</h2>
       <div id="playlist-player" class="embed"></div>
-      <noscript>
-        <div class="card">Enable JavaScript to see the video playlist.</div>
-      </noscript>
+      <noscript><div class="card">Enable JavaScript to see the video playlist.</div></noscript>
     </section>
 
-    <!-- Schedule -->
     <section id="schedule">
       <h2>Training Schedule</h2>
       <div class="card">
         <table>
-          <thead>
-            <tr><th>Day</th><th>Time</th><th>Location</th></tr>
-          </thead>
+          <thead><tr><th>Day</th><th>Time</th><th>Location</th></tr></thead>
           <tbody id="schedule-body"></tbody>
         </table>
       </div>
     </section>
 
-    <!-- About -->
     <section id="about">
       <h2>About the Club</h2>
       <div class="card">
@@ -267,7 +200,6 @@
       </div>
     </section>
 
-    <!-- Contact -->
     <section id="contact">
       <h2>Contact</h2>
       <div class="grid" style="grid-template-columns:repeat(2,minmax(0,1fr))">
@@ -278,8 +210,7 @@
         </div>
         <div class="card">
           <h3 style="margin:6px 0 10px;">Inquiry Form</h3>
-          <!-- <p>Use a simple form (e.g., Google Forms). Paste your form link below:</p> -->
-          <p><a id="form-link" href="inquiry.html">Sign-up / Inquiry Form ↗</a></p>
+          <p><a id="form-link" href="inquiry/">Sign-up / Inquiry Form ↗</a></p>
         </div>
       </div>
     </section>
