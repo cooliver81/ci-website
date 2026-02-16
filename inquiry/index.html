@@ -2,61 +2,235 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Inquiry | Concordia International Weightlifting Club</title>
-  <meta name="description" content="Send a training inquiry to Concordia International Weightlifting Club." />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+
+  <title>CIWC | Inquiry</title>
+  <meta name="description" content="Send a training inquiry to CIWC (Concordia International Weightlifting Club)." />
   <meta name="theme-color" content="#ef4444" />
 
-  <link rel="icon" type="image/png" sizes="32x32" href="../images/logo.png" />
-  <link rel="apple-touch-icon" href="../images/logo.png" />
+  <!-- iOS “Add to Home Screen” -->
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="CIWC" />
+  <meta name="application-name" content="CIWC" />
+
+  <!-- Social -->
+  <meta property="og:title" content="CIWC | Inquiry" />
+  <meta property="og:description" content="Send a training inquiry to CIWC." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="../images/logo_mobile.png" />
+
+  <!-- Icons -->
+  <link rel="apple-touch-icon" sizes="180x180" href="../images/logo_mobile.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="../images/logo_mobile.png" />
 
   <style>
     :root{
-      --bg:#0c0b0c; --surface:#141014; --text:#f3eef0; --muted:#c9b9be;
-      --brand:#ef4444; --brand-2:#f87171; --ring:rgba(239,68,68,.5);
-      --border:rgba(255,255,255,.12); --shadow:0 10px 24px rgba(0,0,0,.28);
+      --bg:#0c0b0c;
+      --surface:#141014;
+      --surface2:#161116;
+      --text:#f3eef0;
+      --muted:#c9b9be;
+      --brand:#ef4444;
+      --border:rgba(255,255,255,.10);
+      --ring:rgba(239,68,68,.55);
+      --shadow:0 10px 24px rgba(0,0,0,.28);
+      --radius:16px;
+
+      --container:900px;
+      --px:18px;
+      --header-h:64px;
     }
+
     *{box-sizing:border-box}
     html,body{height:100%}
+    html{scroll-behavior:smooth}
+    @media (prefers-reduced-motion: reduce){
+      html{scroll-behavior:auto}
+      *,*::before,*::after{animation:none!important;transition:none!important}
+    }
+
     body{
-      margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;line-height:1.6;color:var(--text);
+      margin:0;
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;
+      line-height:1.6;
+      color:var(--text);
       background:
         radial-gradient(1000px 700px at 10% -10%, rgba(239,68,68,.10), transparent 60%),
         radial-gradient(800px 600px at 110% 0%, rgba(248,113,113,.08), transparent 60%),
         var(--bg);
+      overflow-x:hidden;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      text-rendering:optimizeLegibility;
     }
-    a{color:var(--brand-2);text-decoration:none}
+
+    a{color:inherit}
     a:hover{text-decoration:underline}
-    .container{max-width:720px;margin:0 auto;padding:0 20px}
+    img{display:block;max-width:100%}
+    :focus-visible{outline:2px solid var(--ring);outline-offset:2px;border-radius:12px}
 
-    header.site{position:sticky;top:0;z-index:30;background:rgba(20,16,20,.72);backdrop-filter:blur(10px);border-bottom:1px solid var(--border)}
-    .nav{display:flex;align-items:center;justify-content:space-between;padding:12px 0}
-    .brand{display:flex;align-items:center;gap:10px;font-weight:700}
-    .brand img{height:30px;width:auto;border-radius:8px;box-shadow:0 0 0 3px rgba(239,68,68,.12)}
-    .nav-links{display:flex;gap:14px}
-    .nav-links a{color:var(--text);opacity:.9}
+    .container{max-width:var(--container);margin:0 auto;padding:0 var(--px)}
+    .muted{color:var(--muted)}
 
-    main{padding:36px 0}
-    h1{font-size:clamp(28px,3.5vw,40px);margin:0 0 10px;text-align:center}
-    p.lead{color:var(--muted);text-align:center;margin:0 0 24px}
+    /* Skip link */
+    .skip{
+      position:absolute;left:-999px;top:0;z-index:1000;
+      padding:10px 12px;background:var(--surface);border:1px solid var(--border);
+      border-radius:12px;
+    }
+    .skip:focus{left:12px;top:12px}
 
-    .card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:24px;box-shadow:var(--shadow)}
-    form{display:grid;gap:18px}
-    label{font-weight:600;margin-bottom:6px;display:block}
-    .row{display:grid;gap:18px;grid-template-columns:repeat(2,minmax(0,1fr))}
-    input,select,textarea{width:100%;padding:12px 14px;border-radius:12px;border:1px solid var(--border);background:#0f0c0f;color:var(--text)}
-    textarea{min-height:120px;resize:vertical}
+    /* Header */
+    header.site{
+      position:sticky;top:0;z-index:50;
+      background:rgba(20,16,20,.82);
+      backdrop-filter:blur(12px);
+      border-bottom:1px solid var(--border);
+    }
+    .nav{
+      min-height:var(--header-h);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      position:relative;
+    }
+    .brand{
+      display:flex;align-items:center;gap:12px;
+      text-decoration:none;color:inherit;min-width:0;
+    }
+    .brand img{
+      width:40px;height:40px;object-fit:contain;border-radius:10px;
+      box-shadow:0 0 0 3px rgba(239,68,68,.12);
+      flex:0 0 auto;
+    }
+    .brand-text{display:flex;flex-direction:column;gap:2px;min-width:0;line-height:1.05}
+    .brand-title{
+      font-weight:900;letter-spacing:.10em;text-transform:uppercase;
+      font-size:13px;white-space:nowrap;
+    }
+    .brand-sub{
+      font-size:12px;color:var(--muted);font-weight:700;
+      max-width:44ch;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
+    }
 
-    .actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:10px}
-    .btn{display:inline-flex;align-items:center;gap:8px;padding:10px 16px;border-radius:12px;border:1px solid var(--border);background:var(--brand);color:#2a0c0c;font-weight:700;box-shadow:var(--shadow);cursor:pointer}
-    .btn.ghost{background:transparent;color:var(--text)}
+    nav.links{display:flex;align-items:center;gap:14px}
+    nav.links a{
+      text-decoration:none;
+      font-weight:800;font-size:14px;opacity:.92;
+      padding:8px 10px;border-radius:12px;
+      white-space:nowrap;
+    }
+    nav.links a:hover{
+      text-decoration:none;
+      background:rgba(255,255,255,.05);
+      opacity:1;
+    }
 
-    .alert{display:none;margin-top:12px;padding:10px 14px;border-radius:12px}
-    .success{background:rgba(34,197,94,.12);border:1px solid rgba(34,197,94,.35);color:#86efac}
-    .error{background:rgba(249,115,22,.12);border:1px solid rgba(249,115,22,.35);color:#fdba74}
+    /* Page */
+    main{padding:40px 0}
+    h1{
+      margin:0 0 10px;
+      font-size:clamp(28px, 5vw, 44px);
+      line-height:1.1;
+      text-align:center;
+      letter-spacing:-.02em;
+    }
+    p.lead{
+      margin:0 auto 22px;
+      max-width:62ch;
+      text-align:center;
+      color:var(--muted);
+      font-size:clamp(14px, 2.6vw, 18px);
+    }
 
+    .card{
+      background:var(--surface);
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      padding:18px;
+      box-shadow:var(--shadow);
+    }
+
+    form{display:grid;gap:16px}
+    .row{display:grid;gap:16px;grid-template-columns:repeat(2,minmax(0,1fr))}
     @media (max-width:760px){ .row{grid-template-columns:1fr} }
-    :focus-visible{outline:2px solid var(--ring);outline-offset:2px;border-radius:10px}
+
+    label{
+      font-weight:900;
+      letter-spacing:.04em;
+      text-transform:uppercase;
+      font-size:12px;
+      color:var(--muted);
+      display:block;
+      margin:0 0 8px;
+    }
+
+    input,select,textarea{
+      width:100%;
+      padding:12px 14px;
+      border-radius:14px;
+      border:1px solid var(--border);
+      background:#0f0d10;
+      color:var(--text);
+      outline:none;
+    }
+    input::placeholder, textarea::placeholder{color:rgba(201,185,190,.70)}
+    textarea{min-height:140px;resize:vertical}
+
+    input:focus, select:focus, textarea:focus{
+      border-color:rgba(239,68,68,.55);
+      box-shadow:0 0 0 4px rgba(239,68,68,.15);
+    }
+
+    .actions{
+      display:flex;gap:12px;flex-wrap:wrap;margin-top:6px;
+      align-items:center;justify-content:flex-start;
+    }
+
+    .btn{
+      display:inline-flex;align-items:center;justify-content:center;gap:8px;
+      padding:12px 16px;border-radius:14px;border:1px solid var(--border);
+      background:var(--brand);color:#240808;font-weight:900;
+      text-decoration:none;box-shadow:var(--shadow);cursor:pointer;
+      min-width:160px;
+    }
+    .btn:hover{text-decoration:none;filter:brightness(1.02)}
+    .btn.ghost{background:transparent;color:var(--text);box-shadow:none}
+    .btn.ghost:hover{background:rgba(255,255,255,.05)}
+
+    @media (max-width:520px){
+      .actions{flex-direction:column;align-items:stretch}
+      .btn{width:100%;min-width:0}
+    }
+
+    .alert{
+      display:none;
+      margin-top:8px;
+      padding:12px 14px;
+      border-radius:14px;
+      border:1px solid var(--border);
+      background:rgba(255,255,255,.03);
+    }
+    .success{
+      border-color:rgba(34,197,94,.35);
+      background:rgba(34,197,94,.12);
+      color:#86efac;
+    }
+    .error{
+      border-color:rgba(249,115,22,.35);
+      background:rgba(249,115,22,.12);
+      color:#fdba74;
+    }
+
+    footer{
+      color:var(--muted);
+      padding:22px 0 46px;
+      text-align:center;
+      border-top:1px solid rgba(255,255,255,.06);
+      background:rgba(20,16,20,.30);
+    }
   </style>
 
   <script defer>
@@ -67,12 +241,28 @@
       const year = document.querySelector('#year');
       if (year) year.textContent = new Date().getFullYear();
 
-      form.addEventListener('submit', async (e) => {
+      // Defensive: if someone forgets to set Formspree
+      const endpoint = form?.getAttribute('action') || '';
+      const hasRealEndpoint = endpoint && !endpoint.includes('YOUR_FORM_ID');
+
+      if (!hasRealEndpoint) {
+        const note = document.getElementById('endpoint-note');
+        if (note) note.style.display = 'block';
+      }
+
+      form?.addEventListener('submit', async (e) => {
         e.preventDefault();
         success.style.display = 'none';
         error.style.display = 'none';
 
+        if (!hasRealEndpoint) {
+          error.style.display = 'block';
+          error.innerHTML = `Form endpoint isn't set yet. Please update the form <code>action</code> URL, or email us at <a href="mailto:ciwc2001@gmail.com">ciwc2001@gmail.com</a>.`;
+          return;
+        }
+
         const data = new FormData(form);
+
         try {
           const resp = await fetch(form.action, {
             method: 'POST',
@@ -93,42 +283,53 @@
     });
   </script>
 </head>
+
 <body>
+  <a class="skip" href="#main">Skip to content</a>
+
   <header class="site">
     <div class="container nav">
       <a class="brand" href="../" aria-label="Home">
-        <img src="../images/logo.png" alt="Club logo" />
-        <span>CONCORDIA INTERNATIONAL WEIGHTLIFTING CLUB</span>
+        <img src="../images/logo_mobile.png" alt="CIWC logo" />
+        <span class="brand-text">
+          <span class="brand-title">CIWC</span>
+          <span class="brand-sub">Concordia International Weightlifting Club</span>
+        </span>
       </a>
-      <nav class="nav-links">
+
+      <nav class="links" aria-label="Primary">
         <a href="../">Home</a>
-        <a href="./">Inquiry</a>
+        <a href="./" aria-current="page">Inquiry</a>
       </nav>
     </div>
   </header>
 
-  <main class="container">
+  <main id="main" class="container">
     <h1>Inquiry</h1>
     <p class="lead">Tell us a bit about you and your goals. We’ll get back to you soon.</p>
 
     <div class="card">
-      <!-- IMPORTANT: Replace YOUR_FORM_ID with your Formspree endpoint (e.g., https://formspree.io/f/abcxyz) -->
+      <!-- IMPORTANT: Replace YOUR_FORM_ID with your Formspree endpoint -->
       <form id="inquiry-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST" autocomplete="on" novalidate>
+        <div id="endpoint-note" class="alert error" style="display:none">
+          Heads up: the form endpoint hasn’t been set yet. Replace <code>YOUR_FORM_ID</code> in the form <code>action</code>.
+        </div>
+
         <div class="row">
           <div>
             <label for="name">Full Name *</label>
-            <input id="name" name="name" type="text" placeholder="Jane Doe" required>
+            <input id="name" name="name" type="text" placeholder="Jane Doe" required />
           </div>
           <div>
             <label for="_replyto">Email *</label>
-            <input id="_replyto" name="_replyto" type="email" placeholder="you@example.com" required>
+            <input id="_replyto" name="_replyto" type="email" placeholder="you@example.com" required />
           </div>
         </div>
 
         <div class="row">
           <div>
             <label for="phone">Phone</label>
-            <input id="phone" name="phone" type="tel" placeholder="(###) ###-####">
+            <input id="phone" name="phone" type="tel" placeholder="(###) ###-####" />
           </div>
           <div>
             <label for="experience">Experience</label>
@@ -145,8 +346,8 @@
           <textarea id="message" name="message" placeholder="Goals, injuries, availability, questions…"></textarea>
         </div>
 
-        <!-- Honeypot field (helps reduce spam) -->
-        <input type="text" name="_gotcha" style="display:none">
+        <!-- Honeypot -->
+        <input type="text" name="_gotcha" autocomplete="off" tabindex="-1" style="display:none" />
 
         <div class="actions">
           <button class="btn" type="submit">Send Inquiry</button>
@@ -154,14 +355,17 @@
         </div>
 
         <div id="success" class="alert success">Thanks! Your inquiry was sent successfully.</div>
-        <div id="error" class="alert error">Something went wrong. Please try again, or email us directly at <a href="mailto:ciwc2002@gmail.com">ciwc2002@gmail.com</a>.</div>
+        <div id="error" class="alert error">
+          Something went wrong. Please try again, or email us directly at
+          <a href="mailto:ciwc2001@gmail.com">ciwc2001@gmail.com</a>.
+        </div>
       </form>
     </div>
   </main>
 
   <footer>
     <div class="container">
-      <p>© <span id="year">2025</span> Concordia International Weightlifting Club. All rights reserved.</p>
+      <p style="margin:0">© <span id="year">2026</span> CIWC. All rights reserved.</p>
     </div>
   </footer>
 </body>
