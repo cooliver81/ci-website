@@ -3,53 +3,47 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <title>Concordia International Weightlifting Club</title>
-  <meta name="description" content="Concordia International Weightlifting Club — schedule, contact, and latest videos." />
+
+  <!-- Browser tab / SEO -->
+  <title>CIWC</title>
+  <meta name="description" content="Concordia International Weightlifting Club (CIWC) — schedule, contact, and latest videos." />
   <meta name="theme-color" content="#ef4444" />
 
-  <!-- iOS / PWA-ish -->
+  <!-- iOS “Add to Home Screen” / standalone -->
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-  <meta name="apple-mobile-web-app-title" content="CI Weightlifting" />
-  <meta name="application-name" content="CI Weightlifting" />
+  <meta name="apple-mobile-web-app-title" content="CIWC" />
+  <meta name="application-name" content="CIWC" />
 
-  <!-- Open Graph -->
-  <meta property="og:title" content="Concordia International Weightlifting Club" />
+  <!-- Social -->
+  <meta property="og:title" content="CIWC" />
   <meta property="og:description" content="Schedule, contact, and latest videos." />
   <meta property="og:type" content="website" />
-  <meta property="og:image" content="og.png" />
+  <meta property="og:image" content="images/logo_mobile.png" />
 
-  <!-- Icons
-    IMPORTANT:
-    - Create a dedicated SQUARE 180x180 icon file (centered logo with padding).
-    - Do NOT reuse your in-page logo for the app icon.
-  -->
-  <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32.png" />
-  <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16.png" />
-  <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png" />
-  <!-- Optional: if you add a manifest -->
-  <!-- <link rel="manifest" href="site.webmanifest" /> -->
+  <!-- Icons (IMPORTANT: use the square padded icon for iOS) -->
+  <link rel="apple-touch-icon" sizes="180x180" href="images/logo_mobile.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="images/logo_mobile.png" />
 
-  <link rel="preconnect" href="https://www.youtube.com" crossorigin>
-  <link rel="preconnect" href="https://i.ytimg.com" crossorigin>
+  <link rel="preconnect" href="https://www.youtube.com" crossorigin />
+  <link rel="preconnect" href="https://i.ytimg.com" crossorigin />
 
   <style>
     :root{
       --bg:#0c0b0c;
       --surface:#141014;
-      --surface-2:#161116;
+      --surface2:#161116;
       --text:#f3eef0;
       --muted:#c9b9be;
       --brand:#ef4444;
-      --brand-2:#f87171;
-      --ring:rgba(239,68,68,.55);
       --border:rgba(255,255,255,.10);
+      --ring:rgba(239,68,68,.55);
       --shadow:0 10px 24px rgba(0,0,0,.28);
       --radius:16px;
 
-      --container: 1040px;
-      --px: 20px;
-      --header-h: 64px;
+      --container:1100px;
+      --px:18px;
+      --header-h:64px;
     }
 
     *{box-sizing:border-box}
@@ -62,7 +56,7 @@
 
     body{
       margin:0;
-      font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;
       line-height:1.6;
       color:var(--text);
       background:
@@ -70,42 +64,32 @@
         radial-gradient(800px 600px at 110% 0%, rgba(248,113,113,.08), transparent 60%),
         var(--bg);
       overflow-x:hidden;
-      text-rendering:optimizeLegibility;
       -webkit-font-smoothing:antialiased;
       -moz-osx-font-smoothing:grayscale;
+      text-rendering:optimizeLegibility;
     }
 
-    img{max-width:100%;display:block}
-    a{color:var(--brand-2);text-decoration:none}
+    a{color:inherit}
     a:hover{text-decoration:underline}
+    img{display:block;max-width:100%}
     :focus-visible{outline:2px solid var(--ring);outline-offset:2px;border-radius:12px}
 
-    .container{
-      max-width:var(--container);
-      margin:0 auto;
-      padding:0 var(--px);
-    }
+    .container{max-width:var(--container);margin:0 auto;padding:0 var(--px)}
+    .muted{color:var(--muted)}
 
-    /* Skip link (a11y) */
+    /* Skip link */
     .skip{
-      position:absolute;
-      left:-999px;
-      top:0;
-      padding:10px 12px;
-      background:var(--surface);
-      border:1px solid var(--border);
+      position:absolute;left:-999px;top:0;z-index:1000;
+      padding:10px 12px;background:var(--surface);border:1px solid var(--border);
       border-radius:12px;
-      z-index:100;
     }
     .skip:focus{left:12px;top:12px}
 
     /* Header */
     header.site{
-      position:sticky;
-      top:0;
-      z-index:50;
-      background:rgba(20,16,20,.72);
-      backdrop-filter:blur(10px);
+      position:sticky;top:0;z-index:50;
+      background:rgba(20,16,20,.82);
+      backdrop-filter:blur(12px);
       border-bottom:1px solid var(--border);
     }
     .nav{
@@ -114,76 +98,63 @@
       align-items:center;
       justify-content:space-between;
       gap:12px;
-      position:relative; /* allows dropdown positioning */
+      position:relative;
     }
-
     .brand{
-      display:flex;
-      align-items:center;
-      gap:12px;
-      min-width:0;
-      text-decoration:none;
-      color:inherit;
+      display:flex;align-items:center;gap:12px;
+      text-decoration:none;color:inherit;min-width:0;
     }
     .brand img{
-      height:38px;
-      width:38px;
-      object-fit:contain;
-      border-radius:10px;
+      width:40px;height:40px;object-fit:contain;border-radius:10px;
       box-shadow:0 0 0 3px rgba(239,68,68,.12);
       flex:0 0 auto;
     }
-    .brand-name{
-      font-weight:800;
-      letter-spacing:.2px;
-      line-height:1.1;
-      font-size:14px;
-      max-width:28ch;
-      overflow-wrap:anywhere;
-      text-transform:uppercase;
+    .brand-text{
+      display:flex;flex-direction:column;gap:2px;min-width:0;
+      line-height:1.05;
     }
-
-    .nav-right{display:flex;align-items:center;gap:12px}
-
-    .nav-links{
-      display:flex;
-      align-items:center;
-      gap:18px;
-      flex-wrap:nowrap;
+    .brand-title{
+      font-weight:900;letter-spacing:.08em;text-transform:uppercase;
+      font-size:13px;white-space:nowrap;
     }
-    .nav-links a{
-      color:var(--text);
-      opacity:.92;
-      font-weight:700;
-      font-size:14px;
-      white-space:nowrap;
+    .brand-sub{
+      font-size:12px;color:var(--muted);font-weight:700;
+      max-width:40ch;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
     }
 
     .menu-btn{
       display:none;
-      font:inherit;
-      font-weight:900;
-      font-size:18px;
-      line-height:1;
-      padding:10px 12px;
-      border-radius:14px;
+      font:inherit;font-weight:900;font-size:18px;
+      padding:10px 12px;border-radius:14px;
       border:1px solid var(--border);
-      background:transparent;
-      color:var(--text);
+      background:transparent;color:var(--text);
       cursor:pointer;
     }
     .menu-btn:hover{background:rgba(255,255,255,.05)}
-    .menu-btn .icon{display:inline-block;transform:translateY(-1px)}
 
-    /* Mobile menu dropdown */
+    nav.links{
+      display:flex;align-items:center;gap:18px;flex-wrap:nowrap;
+    }
+    nav.links a{
+      text-decoration:none;
+      font-weight:800;font-size:14px;opacity:.92;
+      padding:8px 8px;border-radius:12px;
+      white-space:nowrap;
+    }
+    nav.links a:hover{
+      text-decoration:none;
+      background:rgba(255,255,255,.05);
+      opacity:1;
+    }
+
+    /* Mobile nav dropdown */
     @media (max-width: 860px){
       :root{--px:16px}
-      .menu-btn{display:inline-flex;align-items:center;gap:10px}
-      .nav-links{
+      .menu-btn{display:inline-flex;align-items:center;gap:8px}
+      nav.links{
         display:none;
         position:absolute;
-        left:0;
-        right:0;
+        left:0;right:0;
         top:calc(100% + 10px);
         flex-direction:column;
         align-items:stretch;
@@ -195,83 +166,49 @@
         backdrop-filter:blur(12px);
         box-shadow:var(--shadow);
       }
-      .nav-links[data-open="true"]{display:flex}
-      .nav-links a{
-        padding:12px 12px;
-        border-radius:12px;
+      nav.links[data-open="true"]{display:flex}
+      nav.links a{
         background:rgba(255,255,255,.04);
+        padding:12px 12px;
       }
-      .brand-name{max-width:18ch}
+      .brand-sub{max-width:26ch}
     }
 
     /* Hero */
-    .hero{
-      padding:56px 0 22px;
-      text-align:center;
-    }
+    .hero{padding:56px 0 22px;text-align:center}
     .hero h1{
-      font-size:clamp(28px, 6vw, 54px);
-      line-height:1.05;
       margin:0 0 10px;
+      font-size:clamp(28px, 6vw, 52px);
+      line-height:1.05;
       letter-spacing:-.02em;
     }
     .hero p{
-      color:var(--muted);
       margin:0 auto 18px;
       max-width:760px;
+      color:var(--muted);
       font-size:clamp(14px, 2.6vw, 18px);
     }
-
-    .cta{
-      display:flex;
-      justify-content:center;
-      gap:12px;
-      flex-wrap:wrap;
-    }
+    .cta{display:flex;justify-content:center;gap:12px;flex-wrap:wrap}
 
     .btn{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      gap:8px;
-      padding:12px 16px;
-      border-radius:14px;
-      border:1px solid var(--border);
-      background:var(--brand);
-      color:#2a0c0c;
-      font-weight:900;
-      box-shadow:var(--shadow);
-      cursor:pointer;
-      min-width:170px;
-      text-decoration:none;
+      display:inline-flex;align-items:center;justify-content:center;gap:8px;
+      padding:12px 16px;border-radius:14px;border:1px solid var(--border);
+      background:var(--brand);color:#240808;font-weight:900;
+      text-decoration:none;box-shadow:var(--shadow);min-width:170px;
     }
     .btn:hover{text-decoration:none;filter:brightness(1.02)}
-    .btn.ghost{
-      background:transparent;
-      color:var(--text);
-      box-shadow:none;
-    }
+    .btn.ghost{background:transparent;color:var(--text);box-shadow:none}
     .btn.ghost:hover{background:rgba(255,255,255,.05)}
-    button.btn{font:inherit}
-
-    @media (max-width: 520px){
+    @media (max-width:520px){
       .hero{padding:36px 0 16px}
-      .cta{
-        width:100%;
-        flex-direction:column;
-        align-items:stretch;
-      }
+      .cta{flex-direction:column;align-items:stretch}
       .btn{width:100%;min-width:0}
     }
 
     /* Sections */
     main{padding-bottom:40px}
     section{padding:26px 0}
-    h2{
-      font-size:20px;
-      margin:0 0 12px;
-      letter-spacing:-.01em;
-    }
+    h2{margin:0 0 12px;font-size:20px;letter-spacing:-.01em}
 
     .card{
       background:var(--surface);
@@ -280,8 +217,6 @@
       padding:16px;
       box-shadow:var(--shadow);
     }
-
-    .grid{display:grid;gap:16px}
 
     .embed{
       width:100%;
@@ -292,18 +227,11 @@
       background:#0f0d10;
     }
 
-    /* ========== TRAINING SCHEDULE (FIXED) ==========
-       Desktop/tablet: normal table.
-       Mobile: stacked “cards” per row with labels (no horizontal scroll).
-    */
-    .schedule-wrap{overflow:visible}
-    table.schedule{
-      width:100%;
-      border-collapse:collapse;
-    }
+    /* Schedule: desktop table, mobile “row cards” */
+    table.schedule{width:100%;border-collapse:collapse}
     table.schedule th, table.schedule td{padding:12px 12px;text-align:left}
     table.schedule thead th{
-      background:var(--surface-2);
+      background:var(--surface2);
       border-bottom:1px solid var(--border);
       position:sticky;
       top:var(--header-h);
@@ -312,61 +240,44 @@
     table.schedule tbody tr{border-bottom:1px solid var(--border)}
     table.schedule tbody tr:last-child{border-bottom:none}
 
-    /* Better column balance on desktop */
-    table.schedule col.col-day{width:28%}
-    table.schedule col.col-time{width:42%}
-    table.schedule col.col-loc{width:30%}
-
-    /* Mobile: convert table into cards */
-    @media (max-width: 700px){
+    @media (max-width:700px){
       table.schedule{border-collapse:separate;border-spacing:0 10px}
       table.schedule thead{display:none}
-      table.schedule colgroup{display:none}
-
       table.schedule, table.schedule tbody, table.schedule tr, table.schedule td{
-        display:block;
-        width:100%;
+        display:block;width:100%;
       }
-
       table.schedule tbody tr{
         border:1px solid var(--border);
         background:rgba(255,255,255,.02);
         border-radius:16px;
         overflow:hidden;
       }
-
       table.schedule td{
         border-bottom:1px solid rgba(255,255,255,.06);
         padding:12px 14px;
-        display:flex;
-        align-items:flex-start;
-        justify-content:space-between;
-        gap:14px;
+        display:flex;align-items:flex-start;justify-content:space-between;gap:14px;
       }
       table.schedule td:last-child{border-bottom:none}
-
       table.schedule td::before{
         content: attr(data-label);
         color:var(--muted);
-        font-weight:800;
-        letter-spacing:.2px;
+        font-weight:900;
+        letter-spacing:.12em;
         text-transform:uppercase;
-        font-size:12px;
-        flex:0 0 auto;
+        font-size:11px;
         max-width:40%;
       }
       table.schedule td span{
-        font-weight:800;
+        font-weight:900;
         text-align:right;
         flex:1 1 auto;
       }
     }
 
-    /* Contact grid responsive */
+    /* Contact */
+    .grid{display:grid;gap:16px}
     .contact-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
-    @media (max-width: 860px){
-      .contact-grid{grid-template-columns:1fr}
-    }
+    @media (max-width:860px){ .contact-grid{grid-template-columns:1fr} }
 
     footer{
       color:var(--muted);
@@ -376,33 +287,30 @@
       background:rgba(20,16,20,.30);
     }
 
-    .muted{color:var(--muted)}
     .sr-only{
-      position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;
+      position:absolute;width:1px;height:1px;padding:0;margin:-1px;
+      overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;
     }
   </style>
 
   <script defer>
-    // ===== CONFIG — edit only this object =====
+    // ===== CONFIG =====
     const CONFIG = {
-      clubName: "CONCORDIA INTERNATIONAL WEIGHTLIFTING CLUB",
+      shortName: "CIWC",
+      fullName: "Concordia International Weightlifting Club",
 
       // YouTube
       channelId: "UC3EnVXpZZ2f3pTmMMZJzWLg",
       playlistId: "PLV42tu4VffDrEOQEEcd4ID1bu-QPQqk9e",
-      featuredVideoId: "",
 
-      // Links + contact
+      // Contact
       links: {
         email: "ciwc2001@gmail.com",
         instagram: "https://www.instagram.com/concordiaweightlifting/",
         address: "5400 Av de Westbury, Montréal, QC H3W 2Y8",
+        // IMPORTANT: for GitHub Pages project sites, keep this relative
         contactForm: "inquiry/"
       },
-
-      // Sponsors hidden for now
-      showSponsors: false,
-      sponsors: [],
 
       schedule: [
         { day: "Monday",    time: "4:00 PM–8:00 PM",  location: "YMHA Gym" },
@@ -412,45 +320,40 @@
       ]
     };
 
-    // ===== Utilities =====
-    const $  = (s, root=document) => root.querySelector(s);
-    const $$ = (s, root=document) => Array.from(root.querySelectorAll(s));
-    const safeText = (el, value) => { if (el && value != null) el.textContent = String(value); };
-    const safeHref = (el, href) => { if (el && href) el.setAttribute('href', href); };
-    const safeAttr = (el, name, value) => { if (el && value != null) el.setAttribute(name, String(value)); };
+    const $  = (s, r=document) => r.querySelector(s);
+    const $$ = (s, r=document) => Array.from(r.querySelectorAll(s));
+    const safeText = (el, v) => { if (el && v != null) el.textContent = String(v); };
+    const safeHref = (el, href) => { if (el && href) el.setAttribute("href", href); };
 
     function escapeHtml(str) {
       return String(str).replace(/[&<>"']/g, (m) => ({
         '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;'
       }[m]));
     }
-
-    function setExternalLink(a) {
+    function setExternalLink(a){
       if (!a) return;
       a.target = "_blank";
       a.rel = "noopener noreferrer";
     }
 
-    document.addEventListener('DOMContentLoaded', () => {
-      // Club name
-      $$('.brand-name,[data-club-name]').forEach(el => safeText(el, CONFIG.clubName));
-
-      // Logo fallback
-      const logo = $('#club-logo');
-      if (logo) logo.onerror = () => { logo.style.display = 'none'; };
+    document.addEventListener("DOMContentLoaded", () => {
+      // Set brand text
+      safeText($("#brand-title"), CONFIG.shortName);
+      safeText($("#brand-sub"), CONFIG.fullName);
+      safeText($("#hero-title"), CONFIG.fullName);
 
       // Mobile menu
       initMobileMenu();
 
-      // Channel links
-      const channelUrl = CONFIG.channelId ? `https://www.youtube.com/channel/${encodeURIComponent(CONFIG.channelId)}` : '#';
-      $$('[data-channel-link]').forEach(a => {
-        safeHref(a, channelUrl);
-        setExternalLink(a);
-      });
+      // YouTube links
+      const channelUrl = CONFIG.channelId ? `https://www.youtube.com/channel/${encodeURIComponent(CONFIG.channelId)}` : "#";
+      $$("[data-channel-link]").forEach(a => { safeHref(a, channelUrl); setExternalLink(a); });
 
-      // Schedule (adds data-label so mobile cards look great)
-      const tbody = $('#schedule-body');
+      // Playlist embed
+      mountYouTubePlaylistEmbed(CONFIG.playlistId);
+
+      // Schedule (with labels for mobile cards)
+      const tbody = $("#schedule-body");
       if (tbody) {
         tbody.innerHTML = CONFIG.schedule.map(r => `
           <tr>
@@ -458,110 +361,64 @@
             <td data-label="Time"><span>${escapeHtml(r.time)}</span></td>
             <td data-label="Location"><span>${escapeHtml(r.location)}</span></td>
           </tr>
-        `).join('');
+        `).join("");
       }
 
-      // Contact
-      const emailEl = $('#email-link');
-      if (emailEl && CONFIG.links.email) {
-        safeHref(emailEl, `mailto:${CONFIG.links.email}`);
-        safeText(emailEl, CONFIG.links.email);
-      }
+      // Contact info
+      const emailEl = $("#email-link");
+      if (emailEl && CONFIG.links.email) { safeHref(emailEl, `mailto:${CONFIG.links.email}`); safeText(emailEl, CONFIG.links.email); }
 
-      const instaEl = $('#insta-link');
-      if (instaEl && CONFIG.links.instagram) {
-        safeHref(instaEl, CONFIG.links.instagram);
-        setExternalLink(instaEl);
-      }
+      const instaEl = $("#insta-link");
+      if (instaEl && CONFIG.links.instagram) { safeHref(instaEl, CONFIG.links.instagram); setExternalLink(instaEl); }
 
-      safeText($('#address-text'), CONFIG.links.address);
+      safeText($("#address-text"), CONFIG.links.address);
 
-      const formEl = $('#form-link');
+      const formEl = $("#form-link");
       if (formEl && CONFIG.links.contactForm) safeHref(formEl, CONFIG.links.contactForm);
 
-      // Featured video (optional)
-      const featured = $('#featured');
-      if (featured) {
-        if (CONFIG.featuredVideoId) {
-          featured.innerHTML = `
-            <div class="card">
-              <h2 style="margin:0 0 12px;">Featured Video</h2>
-              <iframe
-                class="embed"
-                loading="lazy"
-                referrerpolicy="strict-origin-when-cross-origin"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowfullscreen
-                title="Featured YouTube video"
-                src="https://www.youtube.com/embed/${encodeURIComponent(CONFIG.featuredVideoId)}?rel=0&modestbranding=1&playsinline=1">
-              </iframe>
-            </div>`;
-        } else {
-          featured.remove();
-        }
-      }
-
-      // Playlist embed
-      mountYouTubePlaylistEmbed(CONFIG.playlistId);
-
-      // Sponsors hidden for now
-      const sponsorsSection = $('#sponsors');
-      if (sponsorsSection) sponsorsSection.hidden = true;
-
       // Footer year
-      safeText($('#year'), new Date().getFullYear());
+      safeText($("#year"), new Date().getFullYear());
     });
 
-    function initMobileMenu() {
-      const btn = $('#menu-btn');
-      const nav = $('#site-nav');
+    function initMobileMenu(){
+      const btn = $("#menu-btn");
+      const nav = $("#site-nav");
       if (!btn || !nav) return;
 
-      const close = () => {
-        nav.dataset.open = "false";
-        btn.setAttribute("aria-expanded", "false");
-      };
-      const open = () => {
-        nav.dataset.open = "true";
-        btn.setAttribute("aria-expanded", "true");
-      };
+      const close = () => { nav.dataset.open = "false"; btn.setAttribute("aria-expanded", "false"); };
+      const open  = () => { nav.dataset.open = "true";  btn.setAttribute("aria-expanded", "true");  };
       const toggle = () => (nav.dataset.open === "true" ? close() : open());
 
-      btn.addEventListener('click', (e) => {
-        e.preventDefault();
-        toggle();
-      });
+      btn.addEventListener("click", (e) => { e.preventDefault(); toggle(); });
+      nav.querySelectorAll("a").forEach(a => a.addEventListener("click", close));
 
-      nav.querySelectorAll('a').forEach(a => a.addEventListener('click', close));
-
-      document.addEventListener('click', (e) => {
+      document.addEventListener("click", (e) => {
         if (nav.dataset.open !== "true") return;
         if (!nav.contains(e.target) && !btn.contains(e.target)) close();
       });
 
-      document.addEventListener('keydown', (e) => {
-        if (e.key === "Escape") close();
-      });
+      document.addEventListener("keydown", (e) => { if (e.key === "Escape") close(); });
 
-      window.addEventListener('resize', () => {
-        if (window.matchMedia('(min-width: 861px)').matches) close();
+      window.addEventListener("resize", () => {
+        if (window.matchMedia("(min-width: 861px)").matches) close();
       });
     }
 
-    function mountYouTubePlaylistEmbed(playlistId) {
-      const iframe = document.getElementById('playlist-player');
+    function mountYouTubePlaylistEmbed(playlistId){
+      const iframe = document.getElementById("playlist-player");
       if (!iframe || !playlistId) return;
 
       const params = new URLSearchParams({
-        listType: 'playlist',
+        listType: "playlist",
         list: playlistId,
-        rel: '0',
-        modestbranding: '1',
-        playsinline: '1'
+        rel: "0",
+        modestbranding: "1",
+        playsinline: "1"
       });
 
-      iframe.setAttribute('referrerpolicy', 'strict-origin-when-cross-origin');
-      iframe.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share');
+      iframe.setAttribute("loading", "lazy");
+      iframe.setAttribute("referrerpolicy", "strict-origin-when-cross-origin");
+      iframe.setAttribute("allow", "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share");
       iframe.src = `https://www.youtube.com/embed?${params.toString()}`;
     }
   </script>
@@ -573,31 +430,32 @@
   <header class="site">
     <div class="container nav">
       <a class="brand" href="./" aria-label="Home">
-        <img id="club-logo" src="images/logo.png" alt="Club logo" />
-        <span class="brand-name">Concordia International</span>
+        <img src="images/logo_mobile.png" alt="CIWC logo" />
+        <span class="brand-text">
+          <span id="brand-title" class="brand-title">CIWC</span>
+          <span id="brand-sub" class="brand-sub">Concordia International Weightlifting Club</span>
+        </span>
       </a>
 
-      <div class="nav-right">
-        <button id="menu-btn" class="menu-btn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="site-nav">
-          <span class="icon">☰</span> <span class="sr-only">Menu</span>
-        </button>
+      <button id="menu-btn" class="menu-btn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="site-nav">
+        ☰ <span class="sr-only">Menu</span>
+      </button>
 
-        <nav id="site-nav" class="nav-links" data-open="false" aria-label="Primary">
-          <a href="./">Home</a>
-          <a href="#videos">Videos</a>
-          <a href="#schedule">Schedule</a>
-          <a href="#about">About</a>
-          <a href="#contact">Contact</a>
-          <a data-channel-link href="#">YouTube ↗</a>
-        </nav>
-      </div>
+      <nav id="site-nav" class="links" data-open="false" aria-label="Primary">
+        <a href="#videos">Videos</a>
+        <a href="#schedule">Schedule</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+        <a data-channel-link href="#">YouTube ↗</a>
+        <a id="form-link" href="inquiry/">Inquiry ↗</a>
+      </nav>
     </div>
   </header>
 
   <section class="hero">
     <div class="container">
-      <h1><span data-club-name>Concordia International</span></h1>
-      <p>Check out our latest videos, training schedule, and contact info.</p>
+      <h1 id="hero-title">Concordia International Weightlifting Club</h1>
+      <p>Community Olympic weightlifting in Montréal. Beginners welcome.</p>
       <div class="cta">
         <a class="btn" data-channel-link href="#">Visit YouTube</a>
         <a class="btn ghost" href="inquiry/">Contact / Inquiry</a>
@@ -606,29 +464,21 @@
   </section>
 
   <main id="main" class="container" tabindex="-1">
-    <section id="featured"></section>
-
     <section id="videos">
       <h2>Latest Videos</h2>
       <iframe
         id="playlist-player"
         class="embed"
-        loading="lazy"
-        allowfullscreen
-        title="YouTube playlist">
+        title="YouTube playlist"
+        allowfullscreen>
       </iframe>
       <noscript><div class="card">Enable JavaScript to see the video playlist.</div></noscript>
     </section>
 
     <section id="schedule">
       <h2>Training Schedule</h2>
-      <div class="card schedule-wrap" role="region" aria-label="Training schedule">
+      <div class="card" role="region" aria-label="Training schedule">
         <table class="schedule">
-          <colgroup>
-            <col class="col-day" />
-            <col class="col-time" />
-            <col class="col-loc" />
-          </colgroup>
           <thead>
             <tr>
               <th>Day</th>
@@ -646,13 +496,13 @@
       <div class="card">
         <p style="margin:0">
           We are a community club focused on Olympic weightlifting. Founded in 2002 by John Margolis,
-          we have trained many athletes of all ages and backgrounds. Everyone is welcome—from beginners to
-          national competitors. Drop in for a trial session or to chat with our athletes!
+          we have trained athletes of all ages and backgrounds. Everyone is welcome—from beginners to
+          national competitors. Drop in for a trial session or to chat with our athletes.
         </p>
       </div>
     </section>
 
-    <!-- Sponsors hidden for now (kept for later implementation) -->
+    <!-- Sponsors hidden for now -->
     <section id="sponsors" hidden></section>
 
     <section id="contact">
@@ -660,12 +510,13 @@
       <div class="grid contact-grid">
         <div class="card">
           <p style="margin:0 0 8px"><strong>Email:</strong> <a id="email-link" href="mailto:">ciwc2001@gmail.com</a></p>
-          <p style="margin:0 0 8px"><strong>Instagram:</strong> <a id="insta-link" href="#" target="_blank" rel="noopener">@concordiaweightlifting</a></p>
+          <p style="margin:0 0 8px"><strong>Instagram:</strong> <a id="insta-link" href="#" rel="noopener">@concordiaweightlifting</a></p>
           <p style="margin:0"><strong>Address:</strong> <span id="address-text"></span></p>
         </div>
         <div class="card">
           <h3 style="margin:6px 0 10px;font-size:16px;letter-spacing:-.01em">Inquiry Form</h3>
-          <p style="margin:0"><a id="form-link" href="inquiry/">Sign-up / Inquiry Form ↗</a></p>
+          <!-- For GitHub Pages project sites, keep this relative -->
+          <p style="margin:0"><a href="inquiry/">Sign-up / Inquiry Form ↗</a></p>
         </div>
       </div>
     </section>
@@ -673,7 +524,7 @@
 
   <footer>
     <div class="container">
-      <p style="margin:0">© <span id="year"></span> <span data-club-name>Concordia International</span>. All rights reserved.</p>
+      <p style="margin:0">© <span id="year"></span> CIWC. All rights reserved.</p>
     </div>
   </footer>
 </body>
