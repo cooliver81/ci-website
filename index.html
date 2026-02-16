@@ -71,11 +71,11 @@
     // ===== CONFIG — edit only this object =====
     const CONFIG = {
       clubName: "CONCORDIA INTERNATIONAL WEIGHTLIFTING CLUB",
-      channelId: "UC3EnVXpZZ2f3pTmMMZJzWLg", // YouTube channel id
-      playlistId: "",                         // optional PL… or UU…
-      featuredVideoId: "",                    // optional single video id
+      channelId: "UC3EnVXpZZ2f3pTmMMZJzWLg",   // YouTube channel id (UC…)
+      playlistId: "",                         // optional: custom playlist id (PL…)
+      featuredVideoId: "",                    // optional: single video id
       links: {
-        // email: "ciwc2001@gmail.com",
+        email: "ciwc2001@gmail.com",
         instagram: "https://www.instagram.com/concordiaweightlifting/",
         address: "5400 Av de Westbury, Montréal, QC H3W 2Y8",
         contactForm: "inquiry/"              // relative path
@@ -88,68 +88,126 @@
       ]
     };
 
-    const $ = (s,root=document)=>root.querySelector(s);
-    const $$ = (s,root=document)=>Array.from(root.querySelectorAll(s));
+    // Small safe helpers
+    const $  = (s, root=document) => root.querySelector(s);
+    const $$ = (s, root=document) => Array.from(root.querySelectorAll(s));
+    const safeText = (el, value) => { if (el && value != null) el.textContent = String(value); };
+    const safeHref = (el, href) => { if (el && href) el.setAttribute('href', href); };
 
     document.addEventListener('DOMContentLoaded', () => {
-      $$('.brand-name,[data-club-name]').forEach(el => el.textContent = CONFIG.clubName);
+      // Club name in header/hero/footer
+      $$('.brand-name,[data-club-name]').forEach(el => safeText(el, CONFIG.clubName));
 
-      const logo = $('#club-logo'); if (logo) logo.onerror = () => { logo.style.display = 'none'; };
-
-      const channelUrl = CONFIG.channelId ? `https://www.youtube.com/channel/${CONFIG.channelId}` : '#';
-      $$('[data-channel-link]').forEach(a => { a.href = channelUrl; a.target = '_blank'; a.rel='noopener noreferrer'; });
-
-      const tbody = $('#schedule-body');
-      tbody.innerHTML = CONFIG.schedule.map(r => `<tr><td>${r.day}</td><td>${r.time}</td><td>${r.location}</td></tr>`).join('');
-
-      $('#email-link').href = `mailto:${CONFIG.links.email}`;
-      $('#email-link').textContent = CONFIG.links.email;
-      $('#insta-link').href = CONFIG.links.instagram;
-      $('#address-text').textContent = CONFIG.links.address;
-      $('#form-link').href = CONFIG.links.contactForm;
-
-      const featured = $('#featured');
-      if (CONFIG.featuredVideoId) {
-        featured.innerHTML = `
-          <div class="card">
-            <h3 class="h3">Featured Video</h3>
-            <iframe class="embed" loading="lazy" allowfullscreen src="https://www.youtube.com/embed/${CONFIG.featuredVideoId}"></iframe>
-          </div>`;
-      } else {
-        featured.remove();
+      // Logo fallback
+      const logo = $('#club-logo');
+      if (logo) {
+        logo.onerror = () => { logo.style.display = 'none'; };
       }
 
-      const uploadsId = CONFIG.playlistId?.length
-        ? CONFIG.playlistId
-        : (CONFIG.channelId?.startsWith('UC') ? 'UU' + CONFIG.channelId.slice(2) : '');
+      // YouTube channel link targets
+      const channelUrl = CONFIG.channelId ? `https://www.youtube.com/channel/${CONFIG.channelId}` : '#';
+      $$('[data-channel-link]').forEach(a => {
+        safeHref(a, channelUrl);
+        a.target = '_blank';
+        a.rel = 'noopener noreferrer';
+      });
 
-      mountYouTubePlaylist(uploadsId);
+      // Schedule table
+      const tbody = $('#schedule-body');
+      if (tbody) {
+        tbody.innerHTML = CONFIG.schedule
+          .map(r => `<tr><td>${escapeHtml(r.day)}</td><td>${escapeHtml(r.time)}</td><td>${escapeHtml(r.location)}</td></tr>`)
+          .join('');
+      }
 
-      $('#year').textContent = new Date().getFullYear();
+      // Contact info (safe + won’t crash if elements missing)
+      const emailEl = $('#email-link');
+      if (emailEl && CONFIG.links.email) {
+        safeHref(emailEl, `mailto:${CONFIG.links.email}`);
+        safeText(emailEl, CONFIG.links.email);
+      }
+
+      const instaEl = $('#insta-link');
+      if (instaEl) safeHref(instaEl, CONFIG.links.instagram);
+
+      const addressEl = $('#address-text');
+      safeText(addressEl, CONFIG.links.address);
+
+      const formEl = $('#form-link');
+      if (formEl) safeHref(formEl, CONFIG.links.contactForm);
+
+      // Featured video (simple iframe, safe)
+      const featured = $('#featured');
+      if (featured) {
+        if (CONFIG.featuredVideoId) {
+          featured.innerHTML = `
+            <div class="card">
+              <h3 style="margin:0 0 10px;">Featured Video</h3>
+              <iframe
+                class="embed"
+                loading="lazy"
+                allow="autoplay; encrypted-media; picture-in-picture"
+                allowfullscreen
+                src="https://www.youtube.com/embed/${encodeURIComponent(CONFIG.featuredVideoId)}?rel=0&modestbranding=1&playsinline=1">
+              </iframe>
+            </div>`;
+        } else {
+          featured.remove();
+        }
+      }
+
+      // Latest videos playlist (NO IFrame API — most reliable on GitHub Pages)
+      const uploadsOrPlaylist = getPlaylistIdFromConfig(CONFIG);
+      mountYouTubePlaylistEmbed(uploadsOrPlaylist);
+
+      // Footer year
+      const yearEl = $('#year');
+      if (yearEl) yearEl.textContent = new Date().getFullYear();
     });
 
-    function mountYouTubePlaylist(playlistId){
-      if (!playlistId) return;
-      const isCustomPlaylist = playlistId.startsWith('PL');
-      const randomIndex = Math.floor(Math.random() * 50);
-      const tag = document.createElement('script');
-      tag.src = 'https://www.youtube.com/iframe_api';
-      document.head.appendChild(tag);
-      window.onYouTubeIframeAPIReady = function(){
-        const player = new YT.Player('playlist-player', {
-          width:'100%', height:'100%',
-          playerVars:{ listType:'playlist', list: playlistId, autoplay:1, mute:1, rel:0, modestbranding:1, playsinline:1 },
-          events:{
-            onReady: () => {
-              try { if (isCustomPlaylist && typeof player.setShuffle === 'function') player.setShuffle(true); } catch(e){}
-              try { player.playVideoAt(randomIndex); } catch(e){}
-            }
-          }
-        });
+    // ===== YouTube (safe, no JS API) =====
+    function getPlaylistIdFromConfig(cfg) {
+      // If user provided a custom playlist (PL...), use it.
+      if (cfg.playlistId && cfg.playlistId.length) return cfg.playlistId;
+
+      // Otherwise, use "uploads" playlist derived from channel ID:
+      // UCxxxx -> UUxxxx (YouTube convention)
+      if (cfg.channelId && cfg.channelId.startsWith('UC')) {
+        return 'UU' + cfg.channelId.slice(2);
       }
+      return '';
+    }
+
+    function mountYouTubePlaylistEmbed(playlistId) {
+      const iframe = document.getElementById('playlist-player');
+      if (!iframe || !playlistId) return;
+
+      const params = new URLSearchParams({
+        list: playlistId,
+        rel: "0",
+        modestbranding: "1",
+        playsinline: "1"
+        // autoplay: "1",  // optional (often blocked)
+        // mute: "1"       // optional
+      });
+
+      iframe.src = `https://www.youtube.com/embed/videoseries?${params.toString()}`;
+    }
+
+
+    // Minimal HTML escaping for schedule rows (defensive)
+    function escapeHtml(str) {
+      return String(str).replace(/[&<>"']/g, (m) => ({
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        '"': '&quot;',
+        "'": '&#039;'
+      }[m]));
     }
   </script>
 </head>
+
 <body>
   <header class="site">
     <div class="container nav">
@@ -179,7 +237,17 @@
 
     <section id="videos">
       <h2>Latest Videos</h2>
-      <div id="playlist-player" class="embed"></div>
+
+      <!-- Plain iframe embed: reliable + avoids origin/postMessage issues -->
+      <iframe
+        id="playlist-player"
+        class="embed"
+        loading="lazy"
+        allow="autoplay; encrypted-media; picture-in-picture"
+        allowfullscreen
+        src="">
+      </iframe>
+
       <noscript><div class="card">Enable JavaScript to see the video playlist.</div></noscript>
     </section>
 
@@ -204,10 +272,9 @@
       <h2>Contact</h2>
       <div class="grid" style="grid-template-columns:repeat(2,minmax(0,1fr))">
         <div class="card">
-          <!-- <p><strong>Email:</strong> <a id="email-link" href="mailto:"></a></p> -->
+          <p><strong>Email:</strong> <a id="email-link" href="mailto:">Email</a></p>
           <p><strong>Instagram:</strong> <a id="insta-link" href="#" target="_blank" rel="noopener">@concordiaweightlifting</a></p>
-          <p><strong>Address: 5400 Av de Westbury, Montréal, QC H3W 2Y8</strong></p>
-          <!-- <p><strong>Address:</strong> <span id="address-text"></span></p> -->
+          <p><strong>Address:</strong> <span id="address-text"></span></p>
         </div>
         <div class="card">
           <h3 style="margin:6px 0 10px;">Inquiry Form</h3>
@@ -224,6 +291,3 @@
   </footer>
 </body>
 </html>
-
-
-
