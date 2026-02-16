@@ -4,16 +4,32 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>Concordia International Weightlifting Club</title>
-  <meta name="description" content="Concordia International Weightlifting Club — schedule, contact, latest videos, and sponsors." />
+  <meta name="description" content="Concordia International Weightlifting Club — schedule, contact, and latest videos." />
   <meta name="theme-color" content="#ef4444" />
 
+  <!-- iOS / PWA-ish -->
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="CI Weightlifting" />
+  <meta name="application-name" content="CI Weightlifting" />
+
+  <!-- Open Graph -->
   <meta property="og:title" content="Concordia International Weightlifting Club" />
-  <meta property="og:description" content="Schedule, contact, sponsors, and latest videos." />
+  <meta property="og:description" content="Schedule, contact, and latest videos." />
   <meta property="og:type" content="website" />
   <meta property="og:image" content="og.png" />
 
-  <link rel="icon" type="image/png" sizes="32x32" href="images/logo.png" />
-  <link rel="apple-touch-icon" href="images/logo.png" />
+  <!-- Icons
+    IMPORTANT:
+    - Create a dedicated SQUARE 180x180 icon file (centered logo with padding).
+    - Do NOT reuse your in-page logo for the app icon.
+  -->
+  <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png" />
+  <!-- Optional: if you add a manifest -->
+  <!-- <link rel="manifest" href="site.webmanifest" /> -->
+
   <link rel="preconnect" href="https://www.youtube.com" crossorigin>
   <link rel="preconnect" href="https://i.ytimg.com" crossorigin>
 
@@ -98,6 +114,7 @@
       align-items:center;
       justify-content:space-between;
       gap:12px;
+      position:relative; /* allows dropdown positioning */
     }
 
     .brand{
@@ -123,6 +140,7 @@
       font-size:14px;
       max-width:28ch;
       overflow-wrap:anywhere;
+      text-transform:uppercase;
     }
 
     .nav-right{display:flex;align-items:center;gap:12px}
@@ -136,7 +154,7 @@
     .nav-links a{
       color:var(--text);
       opacity:.92;
-      font-weight:600;
+      font-weight:700;
       font-size:14px;
       white-space:nowrap;
     }
@@ -144,7 +162,7 @@
     .menu-btn{
       display:none;
       font:inherit;
-      font-weight:800;
+      font-weight:900;
       font-size:18px;
       line-height:1;
       padding:10px 12px;
@@ -164,9 +182,9 @@
       .nav-links{
         display:none;
         position:absolute;
-        left:var(--px);
-        right:var(--px);
-        top:calc(var(--header-h) + 10px);
+        left:0;
+        right:0;
+        top:calc(100% + 10px);
         flex-direction:column;
         align-items:stretch;
         gap:10px;
@@ -221,7 +239,7 @@
       border:1px solid var(--border);
       background:var(--brand);
       color:#2a0c0c;
-      font-weight:800;
+      font-weight:900;
       box-shadow:var(--shadow);
       cursor:pointer;
       min-width:170px;
@@ -264,6 +282,7 @@
     }
 
     .grid{display:grid;gap:16px}
+
     .embed{
       width:100%;
       aspect-ratio:16/9;
@@ -273,70 +292,75 @@
       background:#0f0d10;
     }
 
-    /* Schedule table: scrollable on mobile */
-    .table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
-    table{width:100%;border-collapse:collapse;min-width:560px}
-    th,td{text-align:left;padding:10px 12px}
-    thead th{
+    /* ========== TRAINING SCHEDULE (FIXED) ==========
+       Desktop/tablet: normal table.
+       Mobile: stacked “cards” per row with labels (no horizontal scroll).
+    */
+    .schedule-wrap{overflow:visible}
+    table.schedule{
+      width:100%;
+      border-collapse:collapse;
+    }
+    table.schedule th, table.schedule td{padding:12px 12px;text-align:left}
+    table.schedule thead th{
       background:var(--surface-2);
-      position:sticky;
-      top:calc(var(--header-h) + 0px);
       border-bottom:1px solid var(--border);
+      position:sticky;
+      top:var(--header-h);
       z-index:1;
     }
-    tbody tr{border-bottom:1px solid var(--border)}
-    tbody tr:last-child{border-bottom:none}
+    table.schedule tbody tr{border-bottom:1px solid var(--border)}
+    table.schedule tbody tr:last-child{border-bottom:none}
 
-    /* Sponsors */
-    .sponsor-spotlight{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:14px;
-      flex-wrap:wrap;
-    }
-    .sponsor-link{
-      display:flex;
-      align-items:center;
-      gap:14px;
-      min-width:260px;
-      text-decoration:none;
-      color:inherit;
-      padding:10px;
-      border-radius:14px;
-    }
-    .sponsor-link:hover{
-      text-decoration:none;
-      background:rgba(255,255,255,.03);
-    }
-    .sponsor-logo{
-      height:46px;
-      width:auto;
-      border-radius:12px;
-      border:1px solid var(--border);
-      background:#0f0d10;
-      padding:6px;
-      flex:0 0 auto;
-    }
-    .dots{display:flex;gap:6px;align-items:center}
-    .dot{
-      width:10px;height:10px;border-radius:999px;border:1px solid var(--border);
-      background:transparent;opacity:.7;cursor:pointer
-    }
-    .dot[aria-current="true"]{background:var(--brand);opacity:1}
+    /* Better column balance on desktop */
+    table.schedule col.col-day{width:28%}
+    table.schedule col.col-time{width:42%}
+    table.schedule col.col-loc{width:30%}
 
-    /* Donate card */
-    .donate-row{
-      display:flex;
-      align-items:flex-start;
-      justify-content:space-between;
-      gap:14px;
-      flex-wrap:wrap;
+    /* Mobile: convert table into cards */
+    @media (max-width: 700px){
+      table.schedule{border-collapse:separate;border-spacing:0 10px}
+      table.schedule thead{display:none}
+      table.schedule colgroup{display:none}
+
+      table.schedule, table.schedule tbody, table.schedule tr, table.schedule td{
+        display:block;
+        width:100%;
+      }
+
+      table.schedule tbody tr{
+        border:1px solid var(--border);
+        background:rgba(255,255,255,.02);
+        border-radius:16px;
+        overflow:hidden;
+      }
+
+      table.schedule td{
+        border-bottom:1px solid rgba(255,255,255,.06);
+        padding:12px 14px;
+        display:flex;
+        align-items:flex-start;
+        justify-content:space-between;
+        gap:14px;
+      }
+      table.schedule td:last-child{border-bottom:none}
+
+      table.schedule td::before{
+        content: attr(data-label);
+        color:var(--muted);
+        font-weight:800;
+        letter-spacing:.2px;
+        text-transform:uppercase;
+        font-size:12px;
+        flex:0 0 auto;
+        max-width:40%;
+      }
+      table.schedule td span{
+        font-weight:800;
+        text-align:right;
+        flex:1 1 auto;
+      }
     }
-    .donate-actions{display:flex;gap:10px;flex-wrap:wrap}
-    .donate-copy{max-width:720px}
-    .donate-title{margin:0 0 6px;color:var(--text);font-weight:800}
-    .donate-sub{margin:0;color:var(--muted)}
 
     /* Contact grid responsive */
     .contact-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
@@ -352,7 +376,6 @@
       background:rgba(20,16,20,.30);
     }
 
-    /* Small utility */
     .muted{color:var(--muted)}
     .sr-only{
       position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;
@@ -374,16 +397,12 @@
         email: "ciwc2001@gmail.com",
         instagram: "https://www.instagram.com/concordiaweightlifting/",
         address: "5400 Av de Westbury, Montréal, QC H3W 2Y8",
-        contactForm: "inquiry/",
-        donateUrl: "https://www.paypal.com/donate"
+        contactForm: "inquiry/"
       },
 
-      // Sponsors
-      sponsors: [
-        { name: "Sponsor One", logo: "images/sponsors/sponsor1.png", url: "https://example.com" },
-        { name: "Sponsor Two", logo: "images/sponsors/sponsor2.png", url: "https://example.com" },
-        { name: "Sponsor Three", logo: "images/sponsors/sponsor3.png", url: "https://example.com" },
-      ],
+      // Sponsors hidden for now
+      showSponsors: false,
+      sponsors: [],
 
       schedule: [
         { day: "Monday",    time: "4:00 PM–8:00 PM",  location: "YMHA Gym" },
@@ -413,7 +432,7 @@
     }
 
     document.addEventListener('DOMContentLoaded', () => {
-      // Club name (brand + any data-club-name nodes)
+      // Club name
       $$('.brand-name,[data-club-name]').forEach(el => safeText(el, CONFIG.clubName));
 
       // Logo fallback
@@ -430,15 +449,19 @@
         setExternalLink(a);
       });
 
-      // Schedule
+      // Schedule (adds data-label so mobile cards look great)
       const tbody = $('#schedule-body');
       if (tbody) {
-        tbody.innerHTML = CONFIG.schedule
-          .map(r => `<tr><td>${escapeHtml(r.day)}</td><td>${escapeHtml(r.time)}</td><td>${escapeHtml(r.location)}</td></tr>`)
-          .join('');
+        tbody.innerHTML = CONFIG.schedule.map(r => `
+          <tr>
+            <td data-label="Day"><span>${escapeHtml(r.day)}</span></td>
+            <td data-label="Time"><span>${escapeHtml(r.time)}</span></td>
+            <td data-label="Location"><span>${escapeHtml(r.location)}</span></td>
+          </tr>
+        `).join('');
       }
 
-      // Contact info
+      // Contact
       const emailEl = $('#email-link');
       if (emailEl && CONFIG.links.email) {
         safeHref(emailEl, `mailto:${CONFIG.links.email}`);
@@ -456,14 +479,7 @@
       const formEl = $('#form-link');
       if (formEl && CONFIG.links.contactForm) safeHref(formEl, CONFIG.links.contactForm);
 
-      // Donations
-      const donateEl = $('#donate-link');
-      if (donateEl && CONFIG.links.donateUrl) {
-        safeHref(donateEl, CONFIG.links.donateUrl);
-        setExternalLink(donateEl);
-      }
-
-      // Featured video
+      // Featured video (optional)
       const featured = $('#featured');
       if (featured) {
         if (CONFIG.featuredVideoId) {
@@ -488,8 +504,9 @@
       // Playlist embed
       mountYouTubePlaylistEmbed(CONFIG.playlistId);
 
-      // Sponsors rotator
-      initSponsorRotator(CONFIG.sponsors, { intervalMs: 4500 });
+      // Sponsors hidden for now
+      const sponsorsSection = $('#sponsors');
+      if (sponsorsSection) sponsorsSection.hidden = true;
 
       // Footer year
       safeText($('#year'), new Date().getFullYear());
@@ -515,27 +532,22 @@
         toggle();
       });
 
-      // Close after clicking a link
       nav.querySelectorAll('a').forEach(a => a.addEventListener('click', close));
 
-      // Close when tapping outside
       document.addEventListener('click', (e) => {
         if (nav.dataset.open !== "true") return;
         if (!nav.contains(e.target) && !btn.contains(e.target)) close();
       });
 
-      // Close on escape
       document.addEventListener('keydown', (e) => {
         if (e.key === "Escape") close();
       });
 
-      // Close if resizing up to desktop
       window.addEventListener('resize', () => {
         if (window.matchMedia('(min-width: 861px)').matches) close();
       });
     }
 
-    // ===== YouTube playlist embed (stable, no IFrame API) =====
     function mountYouTubePlaylistEmbed(playlistId) {
       const iframe = document.getElementById('playlist-player');
       if (!iframe || !playlistId) return;
@@ -551,86 +563,6 @@
       iframe.setAttribute('referrerpolicy', 'strict-origin-when-cross-origin');
       iframe.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share');
       iframe.src = `https://www.youtube.com/embed?${params.toString()}`;
-    }
-
-    // ===== Sponsors Rotator =====
-    function initSponsorRotator(sponsors, { intervalMs = 5000 } = {}) {
-      if (!Array.isArray(sponsors) || sponsors.length === 0) {
-        const wrap = document.getElementById('sponsors');
-        if (wrap) wrap.remove();
-        return;
-      }
-
-      const linkEl = document.getElementById('sponsor-link');
-      const logoEl = document.getElementById('sponsor-logo');
-      const nameEl = document.getElementById('sponsor-name');
-      const dotsEl = document.getElementById('sponsor-dots');
-      const prevBtn = document.getElementById('sponsor-prev');
-      const nextBtn = document.getElementById('sponsor-next');
-
-      if (!linkEl || !logoEl || !nameEl || !dotsEl || !prevBtn || !nextBtn) return;
-
-      let idx = 0;
-      let timer = null;
-
-      // Build dots
-      dotsEl.innerHTML = sponsors.map((_, i) =>
-        `<button type="button" class="dot" aria-label="Sponsor ${i + 1}" data-dot="${i}"></button>`
-      ).join('');
-
-      const dotButtons = Array.from(dotsEl.querySelectorAll('button[data-dot]'));
-      dotButtons.forEach(btn => {
-        btn.addEventListener('click', () => {
-          const n = Number(btn.getAttribute('data-dot'));
-          if (Number.isFinite(n)) idx = n;
-          render();
-          restart();
-        });
-      });
-
-      logoEl.addEventListener('error', () => { logoEl.style.display = 'none'; });
-
-      function render() {
-        const s = sponsors[idx] || {};
-        safeText(nameEl, s.name || 'Sponsor');
-
-        logoEl.style.display = '';
-        safeAttr(logoEl, 'src', s.logo || '');
-        safeAttr(logoEl, 'alt', s.name ? `${s.name} logo` : 'Sponsor logo');
-        if (s.url) {
-          safeHref(linkEl, s.url);
-          linkEl.style.pointerEvents = 'auto';
-          linkEl.setAttribute('aria-label', `Visit ${s.name}`);
-          setExternalLink(linkEl);
-        } else {
-          safeHref(linkEl, '#');
-          linkEl.style.pointerEvents = 'none';
-          linkEl.removeAttribute('aria-label');
-        }
-
-        dotButtons.forEach((b, i) => {
-          b.setAttribute('aria-current', i === idx ? 'true' : 'false');
-        });
-      }
-
-      function next() { idx = (idx + 1) % sponsors.length; render(); }
-      function prev() { idx = (idx - 1 + sponsors.length) % sponsors.length; render(); }
-
-      function restart() {
-        if (timer) clearInterval(timer);
-        timer = setInterval(next, intervalMs);
-      }
-
-      nextBtn.addEventListener('click', () => { next(); restart(); });
-      prevBtn.addEventListener('click', () => { prev(); restart(); });
-
-      document.addEventListener('visibilitychange', () => {
-        if (document.hidden) { if (timer) clearInterval(timer); timer = null; }
-        else restart();
-      });
-
-      render();
-      restart();
     }
   </script>
 </head>
@@ -654,8 +586,7 @@
           <a href="./">Home</a>
           <a href="#videos">Videos</a>
           <a href="#schedule">Schedule</a>
-          <a href="#sponsors">Sponsors</a>
-          <a href="#donate">Donate</a>
+          <a href="#about">About</a>
           <a href="#contact">Contact</a>
           <a data-channel-link href="#">YouTube ↗</a>
         </nav>
@@ -670,7 +601,6 @@
       <div class="cta">
         <a class="btn" data-channel-link href="#">Visit YouTube</a>
         <a class="btn ghost" href="inquiry/">Contact / Inquiry</a>
-        <a class="btn ghost" href="#donate">Donate</a>
       </div>
     </div>
   </section>
@@ -692,13 +622,23 @@
 
     <section id="schedule">
       <h2>Training Schedule</h2>
-      <div class="card table-wrap" role="region" aria-label="Training schedule table" tabindex="0">
-        <table>
-          <thead><tr><th>Day</th><th>Time</th><th>Location</th></tr></thead>
+      <div class="card schedule-wrap" role="region" aria-label="Training schedule">
+        <table class="schedule">
+          <colgroup>
+            <col class="col-day" />
+            <col class="col-time" />
+            <col class="col-loc" />
+          </colgroup>
+          <thead>
+            <tr>
+              <th>Day</th>
+              <th>Time</th>
+              <th>Location</th>
+            </tr>
+          </thead>
           <tbody id="schedule-body"></tbody>
         </table>
       </div>
-      <p class="muted" style="margin:10px 0 0;font-size:14px">Tip: scroll the table horizontally on smaller screens.</p>
     </section>
 
     <section id="about">
@@ -712,54 +652,8 @@
       </div>
     </section>
 
-    <section id="donate" hidden>
-      <h2>Support the Club</h2>
-      <div class="card donate-row">
-        <div class="donate-copy">
-          <p class="donate-title">Donations help keep training affordable.</p>
-          <p class="donate-sub">
-            Your support goes toward equipment, platform maintenance, youth programming, and competition travel.
-          </p>
-        </div>
-        <div class="donate-actions">
-          <a id="donate-link" class="btn" href="https://www.paypal.com/donate" target="_blank" rel="noopener noreferrer">
-            Donate via PayPal
-          </a>
-          <a class="btn ghost" href="#sponsors">Become a Sponsor</a>
-        </div>
-      </div>
-    </section>
-
-    <section id="sponsors" hidden>
-      <h2>Sponsors</h2>
-      <div class="card">
-        <div class="sponsor-spotlight">
-          <a id="sponsor-link" class="sponsor-link" href="#" target="_blank" rel="noopener noreferrer">
-            <img id="sponsor-logo" class="sponsor-logo" alt="" />
-            <div>
-              <div id="sponsor-name" style="color:var(--text);font-weight:800"></div>
-              <div class="muted" style="font-size:14px">Proud supporter</div>
-            </div>
-          </a>
-
-          <div style="display:flex;align-items:center;gap:10px">
-            <button id="sponsor-prev" class="btn ghost" type="button" aria-label="Previous sponsor">‹</button>
-            <div id="sponsor-dots" class="dots" aria-label="Sponsor navigation"></div>
-            <button id="sponsor-next" class="btn ghost" type="button" aria-label="Next sponsor">›</button>
-          </div>
-        </div>
-
-        <div class="muted" style="margin-top:14px;font-size:14px">
-          Interested in sponsoring? Use the inquiry form and choose “Sponsorship”.
-        </div>
-
-        <noscript>
-          <div class="muted" style="margin-top:12px">
-            Enable JavaScript to see the rotating sponsor spotlight.
-          </div>
-        </noscript>
-      </div>
-    </section>
+    <!-- Sponsors hidden for now (kept for later implementation) -->
+    <section id="sponsors" hidden></section>
 
     <section id="contact">
       <h2>Contact</h2>
