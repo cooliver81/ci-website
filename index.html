@@ -6,7 +6,7 @@
 
   <!-- Browser tab / SEO -->
   <title>CIWC</title>
-  <meta name="description" content="Concordia International Weightlifting Club (CIWC) — schedule, contact, and latest videos." />
+  <meta name="description" content="Concordia International Weightlifting Club (CIWC) — schedule, sponsors, contact, and latest videos." />
   <meta name="theme-color" content="#ef4444" />
 
   <!-- iOS “Add to Home Screen” / standalone -->
@@ -17,11 +17,11 @@
 
   <!-- Social -->
   <meta property="og:title" content="CIWC" />
-  <meta property="og:description" content="Schedule, contact, and latest videos." />
+  <meta property="og:description" content="Schedule, sponsors, contact, and latest videos." />
   <meta property="og:type" content="website" />
   <meta property="og:image" content="images/logo_mobile.png" />
 
-  <!-- Icons (IMPORTANT: use the square padded icon for iOS) -->
+  <!-- Icons (use the square padded icon for iOS) -->
   <link rel="apple-touch-icon" sizes="180x180" href="images/logo_mobile.png" />
   <link rel="icon" type="image/png" sizes="32x32" href="images/logo_mobile.png" />
 
@@ -109,17 +109,14 @@
       box-shadow:0 0 0 3px rgba(239,68,68,.12);
       flex:0 0 auto;
     }
-    .brand-text{
-      display:flex;flex-direction:column;gap:2px;min-width:0;
-      line-height:1.05;
-    }
+    .brand-text{display:flex;flex-direction:column;gap:2px;min-width:0;line-height:1.05}
     .brand-title{
-      font-weight:900;letter-spacing:.08em;text-transform:uppercase;
+      font-weight:900;letter-spacing:.10em;text-transform:uppercase;
       font-size:13px;white-space:nowrap;
     }
     .brand-sub{
       font-size:12px;color:var(--muted);font-weight:700;
-      max-width:40ch;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
+      max-width:44ch;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
     }
 
     .menu-btn{
@@ -132,13 +129,11 @@
     }
     .menu-btn:hover{background:rgba(255,255,255,.05)}
 
-    nav.links{
-      display:flex;align-items:center;gap:18px;flex-wrap:nowrap;
-    }
+    nav.links{display:flex;align-items:center;gap:14px}
     nav.links a{
       text-decoration:none;
       font-weight:800;font-size:14px;opacity:.92;
-      padding:8px 8px;border-radius:12px;
+      padding:8px 10px;border-radius:12px;
       white-space:nowrap;
     }
     nav.links a:hover{
@@ -274,6 +269,50 @@
       }
     }
 
+    /* Sponsors */
+    .sponsor-grid{
+      display:grid;
+      grid-template-columns:repeat(4, minmax(0, 1fr));
+      gap:16px;
+    }
+    .sponsor-card{
+      background:var(--surface);
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      padding:18px;
+      box-shadow:var(--shadow);
+      text-align:center;
+      transition:transform .18s ease, border-color .18s ease;
+    }
+    .sponsor-card:hover{
+      transform:translateY(-3px);
+      border-color:rgba(239,68,68,.35);
+    }
+    .sponsor-logo{
+      height:64px;
+      width:100%;
+      object-fit:contain;
+      margin:0 auto 12px;
+      filter:drop-shadow(0 6px 10px rgba(0,0,0,.25));
+    }
+    .sponsor-name{
+      margin:0;
+      font-weight:900;
+      line-height:1.25;
+    }
+    .sponsor-note{
+      margin:6px 0 0;
+      color:var(--muted);
+      font-weight:800;
+      font-size:13px;
+    }
+    @media (max-width:1000px){
+      .sponsor-grid{grid-template-columns:repeat(2, minmax(0, 1fr))}
+    }
+    @media (max-width:600px){
+      .sponsor-grid{grid-template-columns:1fr}
+    }
+
     /* Contact */
     .grid{display:grid;gap:16px}
     .contact-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
@@ -303,12 +342,11 @@
       channelId: "UC3EnVXpZZ2f3pTmMMZJzWLg",
       playlistId: "PLV42tu4VffDrEOQEEcd4ID1bu-QPQqk9e",
 
-      // Contact
+      // Contact (GitHub Pages project sites: keep inquiry/ relative)
       links: {
         email: "ciwc2001@gmail.com",
         instagram: "https://www.instagram.com/concordiaweightlifting/",
         address: "5400 Av de Westbury, Montréal, QC H3W 2Y8",
-        // IMPORTANT: for GitHub Pages project sites, keep this relative
         contactForm: "inquiry/"
       },
 
@@ -317,6 +355,13 @@
         { day: "Wednesday", time: "4:00 PM–8:00 PM",  location: "YMHA Gym" },
         { day: "Thursday",  time: "4:00 PM–8:00 PM",  location: "YMHA Gym" },
         { day: "Saturday",  time: "9:00 AM–12:00 PM", location: "YMHA Gym" },
+      ],
+
+      sponsors: [
+        { name: "Jean Coutu", note: "Queen Mary", logo: "images/sponsor-jean-coutu.png" },
+        { name: "TD Canada Trust", note: "Queen Mary", logo: "images/sponsor-td.png" },
+        { name: "MNA Elisabeth Prass", note: "", logo: "images/sponsor-elisabeth-prass.png" },
+        { name: "City of Montréal", note: "Borough CDN–NDG", logo: "images/sponsor-cdn-ndg.png" },
       ]
     };
 
@@ -337,7 +382,7 @@
     }
 
     document.addEventListener("DOMContentLoaded", () => {
-      // Set brand text
+      // Brand / hero titles
       safeText($("#brand-title"), CONFIG.shortName);
       safeText($("#brand-sub"), CONFIG.fullName);
       safeText($("#hero-title"), CONFIG.fullName);
@@ -349,10 +394,13 @@
       const channelUrl = CONFIG.channelId ? `https://www.youtube.com/channel/${encodeURIComponent(CONFIG.channelId)}` : "#";
       $$("[data-channel-link]").forEach(a => { safeHref(a, channelUrl); setExternalLink(a); });
 
+      // Inquiry links
+      $$("[data-inquiry-link]").forEach(a => safeHref(a, CONFIG.links.contactForm));
+
       // Playlist embed
       mountYouTubePlaylistEmbed(CONFIG.playlistId);
 
-      // Schedule (with labels for mobile cards)
+      // Schedule
       const tbody = $("#schedule-body");
       if (tbody) {
         tbody.innerHTML = CONFIG.schedule.map(r => `
@@ -364,6 +412,19 @@
         `).join("");
       }
 
+      // Sponsors
+      const sponsorGrid = $("#sponsor-grid");
+      if (sponsorGrid) {
+        sponsorGrid.innerHTML = CONFIG.sponsors.map(s => `
+          <div class="sponsor-card">
+            <img class="sponsor-logo" src="${escapeHtml(s.logo)}" alt="${escapeHtml(s.name)} logo" loading="lazy"
+                 onerror="this.style.display='none'">
+            <p class="sponsor-name">${escapeHtml(s.name)}</p>
+            ${s.note ? `<p class="sponsor-note">${escapeHtml(s.note)}</p>` : ``}
+          </div>
+        `).join("");
+      }
+
       // Contact info
       const emailEl = $("#email-link");
       if (emailEl && CONFIG.links.email) { safeHref(emailEl, `mailto:${CONFIG.links.email}`); safeText(emailEl, CONFIG.links.email); }
@@ -372,9 +433,6 @@
       if (instaEl && CONFIG.links.instagram) { safeHref(instaEl, CONFIG.links.instagram); setExternalLink(instaEl); }
 
       safeText($("#address-text"), CONFIG.links.address);
-
-      const formEl = $("#form-link");
-      if (formEl && CONFIG.links.contactForm) safeHref(formEl, CONFIG.links.contactForm);
 
       // Footer year
       safeText($("#year"), new Date().getFullYear());
@@ -444,10 +502,11 @@
       <nav id="site-nav" class="links" data-open="false" aria-label="Primary">
         <a href="#videos">Videos</a>
         <a href="#schedule">Schedule</a>
+        <a href="#sponsors">Sponsors</a>
         <a href="#about">About</a>
         <a href="#contact">Contact</a>
         <a data-channel-link href="#">YouTube ↗</a>
-        <a id="form-link" href="inquiry/">Inquiry ↗</a>
+        <a data-inquiry-link href="inquiry/">Inquiry ↗</a>
       </nav>
     </div>
   </header>
@@ -458,7 +517,7 @@
       <p>Community Olympic weightlifting in Montréal. Beginners welcome.</p>
       <div class="cta">
         <a class="btn" data-channel-link href="#">Visit YouTube</a>
-        <a class="btn ghost" href="inquiry/">Contact / Inquiry</a>
+        <a class="btn ghost" data-inquiry-link href="inquiry/">Contact / Inquiry</a>
       </div>
     </div>
   </section>
@@ -491,6 +550,14 @@
       </div>
     </section>
 
+    <section id="sponsors">
+      <h2>Our Sponsors</h2>
+      <div class="sponsor-grid" id="sponsor-grid"></div>
+      <p class="muted" style="margin:12px 0 0;font-size:14px">
+        Thank you to our sponsors for supporting community sport and Olympic weightlifting.
+      </p>
+    </section>
+
     <section id="about">
       <h2>About the Club</h2>
       <div class="card">
@@ -501,9 +568,6 @@
         </p>
       </div>
     </section>
-
-    <!-- Sponsors hidden for now -->
-    <section id="sponsors" hidden></section>
 
     <section id="contact">
       <h2>Contact</h2>
@@ -516,7 +580,7 @@
         <div class="card">
           <h3 style="margin:6px 0 10px;font-size:16px;letter-spacing:-.01em">Inquiry Form</h3>
           <!-- For GitHub Pages project sites, keep this relative -->
-          <p style="margin:0"><a href="inquiry/">Sign-up / Inquiry Form ↗</a></p>
+          <p style="margin:0"><a data-inquiry-link href="inquiry/">Sign-up / Inquiry Form ↗</a></p>
         </div>
       </div>
     </section>
