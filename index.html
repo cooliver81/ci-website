@@ -4,482 +4,27 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 
-  <!-- Browser tab / SEO -->
   <title>CIWC</title>
   <meta name="description" content="Concordia International Weightlifting Club (CIWC) — schedule, sponsors, contact, and latest videos." />
   <meta name="theme-color" content="#ef4444" />
 
-  <!-- iOS “Add to Home Screen” / standalone -->
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <meta name="apple-mobile-web-app-title" content="CIWC" />
   <meta name="application-name" content="CIWC" />
 
-  <!-- Social -->
   <meta property="og:title" content="CIWC" />
   <meta property="og:description" content="Schedule, sponsors, contact, and latest videos." />
   <meta property="og:type" content="website" />
   <meta property="og:image" content="images/logo_mobile.png" />
 
-  <!-- Icons (use the square padded icon for iOS) -->
   <link rel="apple-touch-icon" sizes="180x180" href="images/logo_mobile.png" />
   <link rel="icon" type="image/png" sizes="32x32" href="images/logo_mobile.png" />
 
   <link rel="preconnect" href="https://www.youtube.com" crossorigin />
   <link rel="preconnect" href="https://i.ytimg.com" crossorigin />
 
-  <style>
-    :root{
-      --bg:#0c0b0c;
-      --surface:#141014;
-      --surface2:#161116;
-      --text:#f3eef0;
-      --muted:#c9b9be;
-      --brand:#ef4444;
-      --border:rgba(255,255,255,.10);
-      --ring:rgba(239,68,68,.55);
-      --shadow:0 10px 24px rgba(0,0,0,.28);
-      --radius:16px;
-
-      --container:1100px;
-      --px:18px;
-      --header-h:64px;
-    }
-
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    html{scroll-behavior:smooth}
-    @media (prefers-reduced-motion: reduce){
-      html{scroll-behavior:auto}
-      *,*::before,*::after{animation:none!important;transition:none!important}
-    }
-
-    body{
-      margin:0;
-      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;
-      line-height:1.6;
-      color:var(--text);
-      background:
-        radial-gradient(1000px 700px at 10% -10%, rgba(239,68,68,.10), transparent 60%),
-        radial-gradient(800px 600px at 110% 0%, rgba(248,113,113,.08), transparent 60%),
-        var(--bg);
-      overflow-x:hidden;
-      -webkit-font-smoothing:antialiased;
-      -moz-osx-font-smoothing:grayscale;
-      text-rendering:optimizeLegibility;
-    }
-
-    a{color:inherit}
-    a:hover{text-decoration:underline}
-    img{display:block;max-width:100%}
-    :focus-visible{outline:2px solid var(--ring);outline-offset:2px;border-radius:12px}
-
-    .container{max-width:var(--container);margin:0 auto;padding:0 var(--px)}
-    .muted{color:var(--muted)}
-
-    /* Skip link */
-    .skip{
-      position:absolute;left:-999px;top:0;z-index:1000;
-      padding:10px 12px;background:var(--surface);border:1px solid var(--border);
-      border-radius:12px;
-    }
-    .skip:focus{left:12px;top:12px}
-
-    /* Header */
-    header.site{
-      position:sticky;top:0;z-index:50;
-      background:rgba(20,16,20,.82);
-      backdrop-filter:blur(12px);
-      border-bottom:1px solid var(--border);
-    }
-    .nav{
-      min-height:var(--header-h);
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:12px;
-      position:relative;
-    }
-    .brand{
-      display:flex;align-items:center;gap:12px;
-      text-decoration:none;color:inherit;min-width:0;
-    }
-    .brand img{
-      width:40px;height:40px;object-fit:contain;border-radius:10px;
-      box-shadow:0 0 0 3px rgba(239,68,68,.12);
-      flex:0 0 auto;
-    }
-    .brand-text{display:flex;flex-direction:column;gap:2px;min-width:0;line-height:1.05}
-    .brand-title{
-      font-weight:900;letter-spacing:.10em;text-transform:uppercase;
-      font-size:13px;white-space:nowrap;
-    }
-    .brand-sub{
-      font-size:12px;color:var(--muted);font-weight:700;
-      max-width:44ch;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
-    }
-
-    .menu-btn{
-      display:none;
-      font:inherit;font-weight:900;font-size:18px;
-      padding:10px 12px;border-radius:14px;
-      border:1px solid var(--border);
-      background:transparent;color:var(--text);
-      cursor:pointer;
-    }
-    .menu-btn:hover{background:rgba(255,255,255,.05)}
-
-    nav.links{display:flex;align-items:center;gap:14px}
-    nav.links a{
-      text-decoration:none;
-      font-weight:800;font-size:14px;opacity:.92;
-      padding:8px 10px;border-radius:12px;
-      white-space:nowrap;
-    }
-    nav.links a:hover{
-      text-decoration:none;
-      background:rgba(255,255,255,.05);
-      opacity:1;
-    }
-
-    /* Mobile nav dropdown */
-    @media (max-width: 860px){
-      :root{--px:16px}
-      .menu-btn{display:inline-flex;align-items:center;gap:8px}
-      nav.links{
-        display:none;
-        position:absolute;
-        left:0;right:0;
-        top:calc(100% + 10px);
-        flex-direction:column;
-        align-items:stretch;
-        gap:10px;
-        padding:12px;
-        border-radius:var(--radius);
-        border:1px solid var(--border);
-        background:rgba(20,16,20,.94);
-        backdrop-filter:blur(12px);
-        box-shadow:var(--shadow);
-      }
-      nav.links[data-open="true"]{display:flex}
-      nav.links a{
-        background:rgba(255,255,255,.04);
-        padding:12px 12px;
-      }
-      .brand-sub{max-width:26ch}
-    }
-
-    /* Hero */
-    .hero{padding:56px 0 22px;text-align:center}
-    .hero h1{
-      margin:0 0 10px;
-      font-size:clamp(28px, 6vw, 52px);
-      line-height:1.05;
-      letter-spacing:-.02em;
-    }
-    .hero p{
-      margin:0 auto 18px;
-      max-width:760px;
-      color:var(--muted);
-      font-size:clamp(14px, 2.6vw, 18px);
-    }
-    .cta{display:flex;justify-content:center;gap:12px;flex-wrap:wrap}
-
-    .btn{
-      display:inline-flex;align-items:center;justify-content:center;gap:8px;
-      padding:12px 16px;border-radius:14px;border:1px solid var(--border);
-      background:var(--brand);color:#240808;font-weight:900;
-      text-decoration:none;box-shadow:var(--shadow);min-width:170px;
-    }
-    .btn:hover{text-decoration:none;filter:brightness(1.02)}
-    .btn.ghost{background:transparent;color:var(--text);box-shadow:none}
-    .btn.ghost:hover{background:rgba(255,255,255,.05)}
-    @media (max-width:520px){
-      .hero{padding:36px 0 16px}
-      .cta{flex-direction:column;align-items:stretch}
-      .btn{width:100%;min-width:0}
-    }
-
-    /* Sections */
-    main{padding-bottom:40px}
-    section{padding:26px 0}
-    h2{margin:0 0 12px;font-size:20px;letter-spacing:-.01em}
-
-    .card{
-      background:var(--surface);
-      border:1px solid var(--border);
-      border-radius:var(--radius);
-      padding:16px;
-      box-shadow:var(--shadow);
-    }
-
-    .embed{
-      width:100%;
-      aspect-ratio:16/9;
-      border:0;
-      border-radius:14px;
-      overflow:hidden;
-      background:#0f0d10;
-    }
-
-    /* Schedule: desktop table, mobile “row cards” */
-    table.schedule{width:100%;border-collapse:collapse}
-    table.schedule th, table.schedule td{padding:12px 12px;text-align:left}
-    table.schedule thead th{
-      background:var(--surface2);
-      border-bottom:1px solid var(--border);
-      position:sticky;
-      top:var(--header-h);
-      z-index:1;
-    }
-    table.schedule tbody tr{border-bottom:1px solid var(--border)}
-    table.schedule tbody tr:last-child{border-bottom:none}
-
-    @media (max-width:700px){
-      table.schedule{border-collapse:separate;border-spacing:0 10px}
-      table.schedule thead{display:none}
-      table.schedule, table.schedule tbody, table.schedule tr, table.schedule td{
-        display:block;width:100%;
-      }
-      table.schedule tbody tr{
-        border:1px solid var(--border);
-        background:rgba(255,255,255,.02);
-        border-radius:16px;
-        overflow:hidden;
-      }
-      table.schedule td{
-        border-bottom:1px solid rgba(255,255,255,.06);
-        padding:12px 14px;
-        display:flex;align-items:flex-start;justify-content:space-between;gap:14px;
-      }
-      table.schedule td:last-child{border-bottom:none}
-      table.schedule td::before{
-        content: attr(data-label);
-        color:var(--muted);
-        font-weight:900;
-        letter-spacing:.12em;
-        text-transform:uppercase;
-        font-size:11px;
-        max-width:40%;
-      }
-      table.schedule td span{
-        font-weight:900;
-        text-align:right;
-        flex:1 1 auto;
-      }
-    }
-
-    /* Sponsors */
-    .sponsor-grid{
-      display:grid;
-      grid-template-columns:repeat(4, minmax(0, 1fr));
-      gap:16px;
-    }
-    .sponsor-card{
-      background:var(--surface);
-      border:1px solid var(--border);
-      border-radius:var(--radius);
-      padding:18px;
-      box-shadow:var(--shadow);
-      text-align:center;
-      transition:transform .18s ease, border-color .18s ease;
-    }
-    .sponsor-card:hover{
-      transform:translateY(-3px);
-      border-color:rgba(239,68,68,.35);
-    }
-    .sponsor-logo{
-      height:64px;
-      width:100%;
-      object-fit:contain;
-      margin:0 auto 12px;
-      filter:drop-shadow(0 6px 10px rgba(0,0,0,.25));
-    }
-    .sponsor-name{
-      margin:0;
-      font-weight:900;
-      line-height:1.25;
-    }
-    .sponsor-note{
-      margin:6px 0 0;
-      color:var(--muted);
-      font-weight:800;
-      font-size:13px;
-    }
-    @media (max-width:1000px){
-      .sponsor-grid{grid-template-columns:repeat(2, minmax(0, 1fr))}
-    }
-    @media (max-width:600px){
-      .sponsor-grid{grid-template-columns:1fr}
-    }
-
-    /* Contact */
-    .grid{display:grid;gap:16px}
-    .contact-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
-    @media (max-width:860px){ .contact-grid{grid-template-columns:1fr} }
-
-    footer{
-      color:var(--muted);
-      padding:26px 0 54px;
-      text-align:center;
-      border-top:1px solid rgba(255,255,255,.06);
-      background:rgba(20,16,20,.30);
-    }
-
-    .sr-only{
-      position:absolute;width:1px;height:1px;padding:0;margin:-1px;
-      overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;
-    }
-  </style>
-
-  <script defer>
-    // ===== CONFIG =====
-    const CONFIG = {
-      shortName: "CIWC",
-      fullName: "Concordia International Weightlifting Club",
-
-      // YouTube
-      channelId: "UC3EnVXpZZ2f3pTmMMZJzWLg",
-      playlistId: "PLV42tu4VffDrEOQEEcd4ID1bu-QPQqk9e",
-
-      // Contact (GitHub Pages project sites: keep inquiry/ relative)
-      links: {
-        email: "ciwc2001@gmail.com",
-        instagram: "https://www.instagram.com/concordiaweightlifting/",
-        address: "5400 Av de Westbury, Montréal, QC H3W 2Y8",
-        contactForm: "inquiry/"
-      },
-
-      schedule: [
-        { day: "Monday",    time: "4:00 PM–8:00 PM",  location: "YMHA Gym" },
-        { day: "Wednesday", time: "4:00 PM–8:00 PM",  location: "YMHA Gym" },
-        { day: "Thursday",  time: "4:00 PM–8:00 PM",  location: "YMHA Gym" },
-        { day: "Saturday",  time: "9:00 AM–12:00 PM", location: "YMHA Gym" },
-      ],
-
-      sponsors: [
-        { name: "Jean Coutu", note: "Queen Mary", logo: "images/sponsor-jean-coutu.png" },
-        { name: "TD Canada Trust", note: "Queen Mary", logo: "images/sponsor-td.png" },
-        { name: "MNA Elisabeth Prass", note: "", logo: "images/sponsor-elisabeth-prass.png" },
-        { name: "City of Montréal", note: "Borough CDN–NDG", logo: "images/sponsor-cdn-ndg.png" },
-      ]
-    };
-
-    const $  = (s, r=document) => r.querySelector(s);
-    const $$ = (s, r=document) => Array.from(r.querySelectorAll(s));
-    const safeText = (el, v) => { if (el && v != null) el.textContent = String(v); };
-    const safeHref = (el, href) => { if (el && href) el.setAttribute("href", href); };
-
-    function escapeHtml(str) {
-      return String(str).replace(/[&<>"']/g, (m) => ({
-        '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;'
-      }[m]));
-    }
-    function setExternalLink(a){
-      if (!a) return;
-      a.target = "_blank";
-      a.rel = "noopener noreferrer";
-    }
-
-    document.addEventListener("DOMContentLoaded", () => {
-      // Brand / hero titles
-      safeText($("#brand-title"), CONFIG.shortName);
-      safeText($("#brand-sub"), CONFIG.fullName);
-      safeText($("#hero-title"), CONFIG.fullName);
-
-      // Mobile menu
-      initMobileMenu();
-
-      // YouTube links
-      const channelUrl = CONFIG.channelId ? `https://www.youtube.com/channel/${encodeURIComponent(CONFIG.channelId)}` : "#";
-      $$("[data-channel-link]").forEach(a => { safeHref(a, channelUrl); setExternalLink(a); });
-
-      // Inquiry links
-      $$("[data-inquiry-link]").forEach(a => safeHref(a, CONFIG.links.contactForm));
-
-      // Playlist embed
-      mountYouTubePlaylistEmbed(CONFIG.playlistId);
-
-      // Schedule
-      const tbody = $("#schedule-body");
-      if (tbody) {
-        tbody.innerHTML = CONFIG.schedule.map(r => `
-          <tr>
-            <td data-label="Day"><span>${escapeHtml(r.day)}</span></td>
-            <td data-label="Time"><span>${escapeHtml(r.time)}</span></td>
-            <td data-label="Location"><span>${escapeHtml(r.location)}</span></td>
-          </tr>
-        `).join("");
-      }
-
-      // Sponsors
-      const sponsorGrid = $("#sponsor-grid");
-      if (sponsorGrid) {
-        sponsorGrid.innerHTML = CONFIG.sponsors.map(s => `
-          <div class="sponsor-card">
-            <img class="sponsor-logo" src="${escapeHtml(s.logo)}" alt="${escapeHtml(s.name)} logo" loading="lazy"
-                 onerror="this.style.display='none'">
-            <p class="sponsor-name">${escapeHtml(s.name)}</p>
-            ${s.note ? `<p class="sponsor-note">${escapeHtml(s.note)}</p>` : ``}
-          </div>
-        `).join("");
-      }
-
-      // Contact info
-      const emailEl = $("#email-link");
-      if (emailEl && CONFIG.links.email) { safeHref(emailEl, `mailto:${CONFIG.links.email}`); safeText(emailEl, CONFIG.links.email); }
-
-      const instaEl = $("#insta-link");
-      if (instaEl && CONFIG.links.instagram) { safeHref(instaEl, CONFIG.links.instagram); setExternalLink(instaEl); }
-
-      safeText($("#address-text"), CONFIG.links.address);
-
-      // Footer year
-      safeText($("#year"), new Date().getFullYear());
-    });
-
-    function initMobileMenu(){
-      const btn = $("#menu-btn");
-      const nav = $("#site-nav");
-      if (!btn || !nav) return;
-
-      const close = () => { nav.dataset.open = "false"; btn.setAttribute("aria-expanded", "false"); };
-      const open  = () => { nav.dataset.open = "true";  btn.setAttribute("aria-expanded", "true");  };
-      const toggle = () => (nav.dataset.open === "true" ? close() : open());
-
-      btn.addEventListener("click", (e) => { e.preventDefault(); toggle(); });
-      nav.querySelectorAll("a").forEach(a => a.addEventListener("click", close));
-
-      document.addEventListener("click", (e) => {
-        if (nav.dataset.open !== "true") return;
-        if (!nav.contains(e.target) && !btn.contains(e.target)) close();
-      });
-
-      document.addEventListener("keydown", (e) => { if (e.key === "Escape") close(); });
-
-      window.addEventListener("resize", () => {
-        if (window.matchMedia("(min-width: 861px)").matches) close();
-      });
-    }
-
-    function mountYouTubePlaylistEmbed(playlistId){
-      const iframe = document.getElementById("playlist-player");
-      if (!iframe || !playlistId) return;
-
-      const params = new URLSearchParams({
-        listType: "playlist",
-        list: playlistId,
-        rel: "0",
-        modestbranding: "1",
-        playsinline: "1"
-      });
-
-      iframe.setAttribute("loading", "lazy");
-      iframe.setAttribute("referrerpolicy", "strict-origin-when-cross-origin");
-      iframe.setAttribute("allow", "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share");
-      iframe.src = `https://www.youtube.com/embed?${params.toString()}`;
-    }
-  </script>
+  <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
@@ -523,15 +68,47 @@
   </section>
 
   <main id="main" class="container" tabindex="-1">
+
     <section id="videos">
       <h2>Latest Videos</h2>
-      <iframe
-        id="playlist-player"
-        class="embed"
-        title="YouTube playlist"
-        allowfullscreen>
-      </iframe>
-      <noscript><div class="card">Enable JavaScript to see the video playlist.</div></noscript>
+      <div class="card videos-card">
+        <div class="videos-inner">
+
+          <div class="video-col">
+            <div class="portrait-frame">
+              <iframe
+                id="playlist-player"
+                title="CIWC YouTube playlist"
+                allowfullscreen
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                loading="lazy"
+                referrerpolicy="strict-origin-when-cross-origin">
+              </iframe>
+            </div>
+          </div>
+
+          <div class="quote-panel">
+            <div class="quote-display">
+              <div class="quote-bar"></div>
+              <div class="quote-content">
+                <p id="quote-text" class="quote-text"></p>
+                <span id="quote-author" class="quote-author"></span>
+              </div>
+            </div>
+            <div class="quote-controls">
+              <div class="quote-arrows">
+                <button class="arrow-btn" id="quote-prev" aria-label="Previous quote">&#8592;</button>
+                <button class="arrow-btn" id="quote-next" aria-label="Next quote">&#8594;</button>
+              </div>
+              <div id="quote-dots" class="quote-dots" role="tablist" aria-label="Quote navigation"></div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <noscript>
+        <div class="card noscript-note">Enable JavaScript to see the video playlist.</div>
+      </noscript>
     </section>
 
     <section id="schedule">
@@ -553,17 +130,18 @@
     <section id="sponsors">
       <h2>Our Sponsors</h2>
       <div class="sponsor-grid" id="sponsor-grid"></div>
-      <p style="margin:0">
-        Thank you to our sponsors for supporting community sport and Olympic weightlifting. If you are interested in supporting us, please reach out to us and we will add you to the website!
+      <p class="sponsors-note">
+        Thank you to our sponsors for supporting community sport and Olympic weightlifting.
+        If you are interested in supporting us, please reach out and we will add you to the website!
       </p>
     </section>
 
     <section id="about">
       <h2>About the Club</h2>
       <div class="card">
-        <p style="margin:0">
+        <p>
           We are a community club focused on Olympic weightlifting. Founded in 2002 by John Margolis,
-          we have trained athletes of all ages and backgrounds. Everyone is welcome—from beginners to
+          we have trained athletes of all ages and backgrounds. Everyone is welcome — from beginners to
           national competitors. Drop in for a trial session or to chat with our athletes.
         </p>
       </div>
@@ -573,23 +151,25 @@
       <h2>Contact</h2>
       <div class="grid contact-grid">
         <div class="card">
-          <p style="margin:0 0 8px"><strong>Email:</strong> <a id="email-link" href="mailto:">ciwc2001@gmail.com</a></p>
-          <p style="margin:0 0 8px"><strong>Instagram:</strong> <a id="insta-link" href="#" rel="noopener">@concordiaweightlifting</a></p>
-          <p style="margin:0"><strong>Address:</strong> <span id="address-text"></span></p>
+          <p><strong>Email:</strong> <a id="email-link" href="mailto:">ciwc2001@gmail.com</a></p>
+          <p><strong>Instagram:</strong> <a id="insta-link" href="#" rel="noopener">@concordiaweightlifting</a></p>
+          <p><strong>Address:</strong> <span id="address-text"></span></p>
         </div>
         <div class="card">
-          <h3 style="margin:6px 0 10px;font-size:16px;letter-spacing:-.01em">Inquiry Form</h3>
-          <!-- For GitHub Pages project sites, keep this relative -->
-          <p style="margin:0"><a data-inquiry-link href="inquiry/">Sign-up / Inquiry Form ↗</a></p>
+          <h3>Inquiry Form</h3>
+          <p><a data-inquiry-link href="inquiry/">Sign-up / Inquiry Form ↗</a></p>
         </div>
       </div>
     </section>
+
   </main>
 
   <footer>
     <div class="container">
-      <p style="margin:0">© <span id="year"></span> CIWC. All rights reserved.</p>
+      <p>© <span id="year"></span> CIWC. All rights reserved.</p>
     </div>
   </footer>
+
+  <script src="main.js"></script>
 </body>
 </html>
