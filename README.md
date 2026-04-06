@@ -7,7 +7,7 @@ The site provides:
 - Basic information about the club  
 - Schedule and training details  
 - Contact and inquiry form
-- Connected to the Youtube channel to play random videos
+- Connected to the Youtube channel to play our clubs Youtube videos
 
 ## Structure
 - `index.html` – Main landing page  
@@ -16,10 +16,3 @@ The site provides:
 
 ## Deployment
 The site is hosted on **GitHub Pages** and updates automatically when changes are pushed to the `main` branch.  
-
-## Contributing
-This repository is mainly for the club’s website content.  
-If you’d like to suggest updates, please open an issue or pull request.  
-
-## Contact
-For training inquiries, visit (https://ciweightlifting.ca/inquiry).
