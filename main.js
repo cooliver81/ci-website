@@ -29,7 +29,7 @@ const CONFIG = {
 
   quotes: [
     {
-      text: "Perserverance, Sustained Effort, Ingenuity and Patience.",
+      text: "Perseverance, Sustained Effort, Ingenuity and Patience.",
       author: "Lionel St-Jean"
     },
     // {
