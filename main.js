@@ -24,6 +24,7 @@ const CONFIG = {
     { name: "Jean Coutu",          note: "Queen Mary",        logo: "images/sponsor-jean-coutu.png" },
     { name: "TD Canada Trust",     note: "Queen Mary",        logo: "images/sponsor-td.png" },
     { name: "MNA Elisabeth Prass", note: "",                  logo: "images/sponsor-elisabeth-prass.png" },
+    { name: "MNA Michelle Setlakwe", note: "",                 logo: "images/sponsor-elisabeth-prass.png" },
     { name: "City of Montréal",    note: "Borough CDN–NDG",   logo: "images/sponsor-cdn-ndg.png" }
   ],
 
