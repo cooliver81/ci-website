@@ -4,9 +4,10 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 
-  <title>CIWC | Inquiry</title>
-  <meta name="description" content="Send a training inquiry to CIWC — Concordia International Weightlifting Club." />
-  <meta name="theme-color" content="#ef4444" />
+  <title>Inquiry | CIWC Olympic Weightlifting Club</title>
+  <meta name="description" content="Book a trial session or ask a question: send a training inquiry to CIWC, Concordia International Weightlifting Club in Montréal." />
+  <meta name="theme-color" content="#0c0b0c" />
+  <link rel="canonical" href="https://ciweightlifting.ca/inquiry/" />
 
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
@@ -16,10 +17,12 @@
   <meta property="og:title" content="CIWC | Inquiry" />
   <meta property="og:description" content="Send a training inquiry to CIWC." />
   <meta property="og:type" content="website" />
-  <meta property="og:image" content="../images/logo_mobile.png" />
+  <meta property="og:url" content="https://ciweightlifting.ca/inquiry/" />
+  <meta property="og:image" content="https://ciweightlifting.ca/images/og-image.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
 
-  <link rel="apple-touch-icon" sizes="180x180" href="../images/logo_mobile.png" />
-  <link rel="icon" type="image/png" sizes="32x32" href="../images/logo_mobile.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="../images/favicon-32.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="../images/apple-touch-icon.png" />
 
   <link rel="stylesheet" href="../style.css" />
   <link rel="stylesheet" href="inquiry.css" />
@@ -30,15 +33,15 @@
 
   <header class="site">
     <div class="container nav">
-      <a class="brand" href="../" aria-label="Home">
-        <img src="../images/logo_mobile.png" alt="CIWC logo" />
+      <a class="brand" href="../" aria-label="CIWC home">
+        <img src="../images/icon-192.png" alt="" width="40" height="40" />
         <span class="brand-text">
           <span class="brand-title">CIWC</span>
           <span class="brand-sub">Concordia International Weightlifting Club</span>
         </span>
       </a>
 
-      <nav class="links" aria-label="Primary">
+      <nav class="links links-inline" aria-label="Primary">
         <a href="../">Home</a>
         <a href="./" aria-current="page">Inquiry</a>
       </nav>
@@ -47,26 +50,28 @@
 
   <main id="main" class="container inquiry-main">
     <h1>Inquiry</h1>
-    <p class="lead">Tell us a bit about you and your goals. We'll get back to you soon.</p>
+    <p class="lead">Want to try a session or have a question? Tell us a bit about you and your goals and we'll get back to you soon.</p>
 
     <div class="card">
       <form id="inquiry-form" action="https://formspree.io/f/mwprbnln" method="POST" autocomplete="on" novalidate>
 
+        <p class="form-note">Fields marked * are required.</p>
+
         <div class="form-row">
           <div class="field">
             <label for="name">Full Name *</label>
-            <input id="name" name="name" type="text" placeholder="Jane Doe" required />
+            <input id="name" name="name" type="text" autocomplete="name" placeholder="Jane Doe" required />
           </div>
           <div class="field">
             <label for="_replyto">Email *</label>
-            <input id="_replyto" name="_replyto" type="email" placeholder="you@example.com" required />
+            <input id="_replyto" name="_replyto" type="email" autocomplete="email" placeholder="you@example.com" required />
           </div>
         </div>
 
         <div class="form-row">
           <div class="field">
             <label for="phone">Phone</label>
-            <input id="phone" name="phone" type="tel" placeholder="(###) ###-####" />
+            <input id="phone" name="phone" type="tel" autocomplete="tel" placeholder="(514) 555-0123" />
           </div>
           <div class="field">
             <label for="experience">Experience</label>
@@ -83,18 +88,18 @@
           <textarea id="message" name="message" placeholder="Goals, injuries, availability, questions…"></textarea>
         </div>
 
-        <input type="text" name="_gotcha" autocomplete="off" tabindex="-1" class="sr-only" />
+        <input type="text" name="_gotcha" autocomplete="off" tabindex="-1" class="sr-only" aria-hidden="true" />
 
         <div class="form-actions">
-          <button class="btn" type="submit">Send Inquiry</button>
+          <button class="btn" type="submit" id="submit-btn">Send Inquiry</button>
           <a class="btn ghost" href="../">Back to Home</a>
         </div>
 
-        <div id="form-success" class="alert alert-success" role="alert" aria-live="polite">
+        <div id="form-success" class="alert alert-success" role="status" tabindex="-1">
           Thanks! Your inquiry was sent successfully.
         </div>
-        <div id="form-error" class="alert alert-error" role="alert" aria-live="polite">
-          Something went wrong. Please try again, or email us at
+        <div id="form-error" class="alert alert-error" role="alert" tabindex="-1">
+          <span id="form-error-detail">Something went wrong.</span> Please try again, or email us at
           <a href="mailto:ciwc2001@gmail.com">ciwc2001@gmail.com</a>.
         </div>
 
@@ -104,7 +109,7 @@
 
   <footer>
     <div class="container">
-      <p>© <span id="year"></span> CIWC. All rights reserved.</p>
+      <p>© <span id="year">2026</span> Concordia International Weightlifting Club</p>
     </div>
   </footer>
 
