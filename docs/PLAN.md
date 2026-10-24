@@ -25,6 +25,8 @@ Decisions:
 - The club does not offer trial sessions. The single call to action is "Get in Touch".
 - No code licence. Default copyright (all rights reserved) applies, and the README notes that photos and logos
   aren't for reuse. Revisit only if someone asks to reuse the code.
+- `CLAUDE.md` stays committed. It holds the rules for this repo (`main` is production, no invented club facts),
+  so it belongs with the code.
 
 Still open: the content gaps in milestone 4.
 
