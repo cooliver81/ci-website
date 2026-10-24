@@ -22,7 +22,7 @@ Milestone 1 merged and live (PR #1). Follow-up on branch `fix/no-trial-sessions`
 Decisions:
 - Founding year is 2002. The `ciwc2001@` address is just the mailbox name and stays.
 - The unused images in `images/` stay for now.
-- The club does not offer trial sessions. Calls to action say "Get in Touch" / "Contact Us".
+- The club does not offer trial sessions. The single call to action is "Get in Touch".
 - No code licence. Default copyright (all rights reserved) applies, and the README notes that photos and logos
   aren't for reuse. Revisit only if someone asks to reuse the code.
 
@@ -57,3 +57,7 @@ Still open: the content gaps in milestone 4.
   the About button "Contact Us", and the meta descriptions, inquiry intro and README were updated to match.
   Session 1's "trial session" call to action was wrong.
 - Cut the README down to what the site is (no screenshots, setup or deployment notes) and removed `docs/screenshots/`.
+- Simplified the home page. Removed the Contact section, which repeated the address, Instagram, YouTube and the
+  inquiry link. The page order is now About → Videos → Schedule → Sponsors. The inquiry link appeared 4 times
+  with 4 different labels; it's now "Get in Touch" in the nav and hero, plus an inline link in About.
+  The footer shows the email address itself, since it's the only place left to find it.
