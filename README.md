@@ -12,7 +12,7 @@ weightlifting club in Montréal. Live at **[ciweightlifting.ca](https://ciweight
 ## What it does
 
 - **Training schedule and location**: the address opens in Google Maps.
-- **Trial and inquiry form** that sends to the club's inbox through [Formspree](https://formspree.io).
+- **Contact / inquiry form** that sends to the club's inbox through [Formspree](https://formspree.io).
   The page doesn't reload; it validates fields, blocks double submits, and shows Formspree's error message if a send fails.
 - **YouTube playlist** embed (privacy-enhanced `youtube-nocookie.com`) with a quote panel.
 - **Sponsors** section with a "Become a Sponsor" contact link.

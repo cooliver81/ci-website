@@ -13,6 +13,8 @@ Static site for the Concordia International Weightlifting Club, live at https://
    Instagram and address also appear as static fallbacks in `index.html` so they work without JS;
    keep both in sync.
 4. **Don't invent club facts** (prices, coaches, age policy, affiliations). Ask Oliver.
+   The club does **not** offer trial sessions: calls to action say "Get in Touch" / "Contact Us"
+   and link to the inquiry page.
 5. **Images:** lowercase-kebab-case file names, sized for their display size (roughly 2× for retina),
    and with `width`/`height` attributes on `<img>`. Nothing over ~200 KB without a reason.
 6. Header and footer markup is duplicated across `index.html`, `inquiry/index.html` and `404.html`.

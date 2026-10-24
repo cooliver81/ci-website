@@ -12,16 +12,17 @@ steps without changing the stack (static HTML/CSS/JS on GitHub Pages).
 2. **Automated checks.** Playwright smoke tests (pages load, form validates, phone viewport has no
    horizontal scroll, menu works), then a GitHub Actions workflow that runs them on each PR.
 3. **Measured performance.** Lighthouse in CI on each PR, with before/after numbers recorded here.
-4. **Content gaps** (needs club input): first-session info (cost, what to bring, book or drop in),
+4. **Content gaps** (needs club input): joining info (cost, what to bring, how to start),
    coaches and affiliation, age policy, a French version.
 
 ## Status
 
-Milestone 1 done on branch `polish/readme-and-ui`. Oliver is testing it before pushing.
+Milestone 1 merged and live (PR #1). Follow-up on branch `fix/no-trial-sessions`.
 
 Decisions:
 - Founding year is 2002. The `ciwc2001@` address is just the mailbox name and stays.
 - The unused images in `images/` stay for now.
+- The club does not offer trial sessions. Calls to action say "Get in Touch" / "Contact Us".
 - No code licence. Default copyright (all rights reserved) applies, and the README notes that photos and logos
   aren't for reuse. Revisit only if someone asks to reuse the code.
 
@@ -50,3 +51,9 @@ Still open: the content gaps in milestone 4.
 - Verified in headless Edge at 390px and 1366px: no console errors, no horizontal overflow, empty and invalid
   submits blocked, valid submit and error paths tested against a mocked Formspree, and the 404 page styles
   load from a nested path.
+
+### Session 2: copy fix
+- Removed every mention of trial sessions (the club doesn't offer them). The hero button is now "Get in Touch",
+  the About button "Contact Us", and the meta descriptions, inquiry intro and README were updated to match.
+  Session 1's "trial session" call to action was wrong.
+- Retook the README screenshots.
