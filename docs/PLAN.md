@@ -17,8 +17,15 @@ steps without changing the stack (static HTML/CSS/JS on GitHub Pages).
 
 ## Status
 
-Milestone 1 done on branch `polish/readme-and-ui`, waiting for PR review. Open questions for the owner:
-the unused images in `images/`, the founding year (2001 or 2002), the code licence, and the content gaps in milestone 4.
+Milestone 1 done on branch `polish/readme-and-ui`. Oliver is testing it before pushing.
+
+Decisions:
+- Founding year is 2002. The `ciwc2001@` address is just the mailbox name and stays.
+- The unused images in `images/` stay for now.
+- No code licence. Default copyright (all rights reserved) applies, and the README notes that photos and logos
+  aren't for reuse. Revisit only if someone asks to reuse the code.
+
+Still open: the content gaps in milestone 4.
 
 ## Session log
 
