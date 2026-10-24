@@ -56,4 +56,4 @@ Still open: the content gaps in milestone 4.
 - Removed every mention of trial sessions (the club doesn't offer them). The hero button is now "Get in Touch",
   the About button "Contact Us", and the meta descriptions, inquiry intro and README were updated to match.
   Session 1's "trial session" call to action was wrong.
-- Retook the README screenshots.
+- Cut the README down to what the site is (no screenshots, setup or deployment notes) and removed `docs/screenshots/`.
