@@ -4,25 +4,30 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 
-  <title>CIWC</title>
-  <meta name="description" content="Concordia International Weightlifting Club (CIWC) — schedule, sponsors, contact, and latest videos." />
-  <meta name="theme-color" content="#ef4444" />
+  <title>CIWC | Olympic Weightlifting Club in Montréal</title>
+  <meta name="description" content="Concordia International Weightlifting Club (CIWC): community Olympic weightlifting in Montréal since 2002. Training schedule, trial sessions, sponsors and contact." />
+  <meta name="theme-color" content="#0c0b0c" />
+  <link rel="canonical" href="https://ciweightlifting.ca/" />
 
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <meta name="apple-mobile-web-app-title" content="CIWC" />
   <meta name="application-name" content="CIWC" />
 
-  <meta property="og:title" content="CIWC" />
-  <meta property="og:description" content="Schedule, sponsors, contact, and latest videos." />
+  <meta property="og:title" content="Concordia International Weightlifting Club" />
+  <meta property="og:description" content="Community Olympic weightlifting in Montréal. Beginners welcome." />
   <meta property="og:type" content="website" />
-  <meta property="og:image" content="images/logo_mobile.png" />
+  <meta property="og:url" content="https://ciweightlifting.ca/" />
+  <meta property="og:image" content="https://ciweightlifting.ca/images/og-image.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
 
-  <link rel="apple-touch-icon" sizes="180x180" href="images/logo_mobile.png" />
-  <link rel="icon" type="image/png" sizes="32x32" href="images/logo_mobile.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png" />
 
-  <link rel="preconnect" href="https://www.youtube.com" crossorigin />
-  <link rel="preconnect" href="https://i.ytimg.com" crossorigin />
+  <link rel="preconnect" href="https://www.youtube-nocookie.com" />
+  <link rel="preconnect" href="https://i.ytimg.com" />
 
   <link rel="stylesheet" href="style.css" />
 </head>
@@ -32,147 +37,176 @@
 
   <header class="site">
     <div class="container nav">
-      <a class="brand" href="./" aria-label="Home">
-        <img src="images/logo_mobile.png" alt="CIWC logo" />
+      <a class="brand" href="./" aria-label="CIWC home">
+        <img src="images/icon-192.png" alt="" width="40" height="40" />
         <span class="brand-text">
           <span id="brand-title" class="brand-title">CIWC</span>
           <span id="brand-sub" class="brand-sub">Concordia International Weightlifting Club</span>
         </span>
       </a>
 
-      <button id="menu-btn" class="menu-btn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="site-nav">
-        ☰ <span class="sr-only">Menu</span>
+      <button id="menu-btn" class="menu-btn" type="button" aria-expanded="false" aria-controls="site-nav">
+        <span aria-hidden="true">☰</span> <span class="sr-only">Menu</span>
       </button>
 
       <nav id="site-nav" class="links" data-open="false" aria-label="Primary">
-        <a href="#videos">Videos</a>
         <a href="#schedule">Schedule</a>
-        <a href="#sponsors">Sponsors</a>
         <a href="#about">About</a>
+        <a href="#videos">Videos</a>
+        <a href="#sponsors">Sponsors</a>
         <a href="#contact">Contact</a>
-        <a data-channel-link href="#">YouTube ↗</a>
-        <a data-inquiry-link href="inquiry/">Inquiry ↗</a>
+        <a class="nav-cta" data-inquiry-link href="inquiry/">Join Us</a>
       </nav>
     </div>
   </header>
 
-  <section class="hero">
-    <div class="container hero-inner">
-      <div class="hero-text">
-        <h1 id="hero-title">Concordia International Weightlifting Club</h1>
-        <p>Community Olympic weightlifting in Montréal. Beginners welcome.</p>
-        <div class="cta">
-          <a class="btn" data-channel-link href="#">Visit YouTube</a>
-          <a class="btn ghost" data-inquiry-link href="inquiry/">Contact / Inquiry</a>
+  <main id="main" tabindex="-1">
+
+    <section class="hero">
+      <div class="container hero-inner">
+        <div class="hero-text">
+          <h1 id="hero-title">Concordia International Weightlifting Club</h1>
+          <p>Community Olympic weightlifting in Montréal since 2002. Beginners welcome.</p>
+          <div class="cta">
+            <a class="btn" data-inquiry-link href="inquiry/">Book a Trial Session</a>
+            <a class="btn ghost" data-channel-link href="https://www.youtube.com/channel/UC3EnVXpZZ2f3pTmMMZJzWLg">Watch on YouTube <span aria-hidden="true">↗</span></a>
+          </div>
+        </div>
+        <div class="hero-photo">
+          <img src="images/group-photo.jpg" alt="CIWC members in club hoodies at the gym" width="1170" height="878" fetchpriority="high" />
         </div>
       </div>
-      <div class="hero-photo">
-        <img src="images/group photo.jpg" alt="CIWC members" />
-      </div>
-    </div>
-  </section>
-
-  <main id="main" class="container" tabindex="-1">
-
-    <section id="videos">
-      <h2>Latest Videos</h2>
-      <div class="card videos-card">
-        <div class="videos-inner">
-
-          <div class="video-col">
-            <div class="portrait-frame">
-              <iframe
-                id="playlist-player"
-                title="CIWC YouTube playlist"
-                allowfullscreen
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                loading="lazy"
-                referrerpolicy="strict-origin-when-cross-origin">
-              </iframe>
-            </div>
-          </div>
-
-          <div class="quote-panel">
-            <div class="quote-display">
-              <div class="quote-bar"></div>
-              <div class="quote-content">
-                <p id="quote-text" class="quote-text"></p>
-                <span id="quote-author" class="quote-author"></span>
-              </div>
-            </div>
-            <div class="quote-controls">
-              <div class="quote-arrows">
-                <button class="arrow-btn" id="quote-prev" aria-label="Previous quote">&#8592;</button>
-                <button class="arrow-btn" id="quote-next" aria-label="Next quote">&#8594;</button>
-              </div>
-              <div id="quote-dots" class="quote-dots" role="tablist" aria-label="Quote navigation"></div>
-            </div>
-          </div>
-
-        </div>
-      </div>
-      <noscript>
-        <div class="card noscript-note">Enable JavaScript to see the video playlist.</div>
-      </noscript>
     </section>
 
-    <section id="schedule">
-      <h2>Training Schedule</h2>
-      <div class="card" role="region" aria-label="Training schedule">
-        <table class="schedule">
-          <thead>
-            <tr>
-              <th>Day</th>
-              <th>Time</th>
-              <th>Location</th>
-            </tr>
-          </thead>
-          <tbody id="schedule-body"></tbody>
-        </table>
-      </div>
-    </section>
+    <div class="container">
 
-    <section id="sponsors">
-      <h2>Our Sponsors</h2>
-      <div class="sponsor-grid" id="sponsor-grid"></div>
-      <p class="sponsors-note">
-        Thank you to our sponsors for supporting community sport and Olympic weightlifting.
-        If you are interested in supporting us, please reach out and we will add you to the website!
-      </p>
-    </section>
-
-    <section id="about">
-      <h2>About the Club</h2>
-      <div class="card about-card">
-        <img src="images/john-cj.JPG" alt="Club members" class="about-photo" />
-        <p>
-          We are a community club focused on Olympic weightlifting. Founded in 2002 by John Margolis,
-          we have trained athletes of all ages and backgrounds. Everyone is welcome — from beginners to
-          national competitors. Drop in for a trial session or to chat with our athletes.
+      <section id="schedule">
+        <h2>Training Schedule</h2>
+        <p class="section-sub">
+          All sessions at <a id="location-link" href="https://www.google.com/maps/search/?api=1&amp;query=5400+Av+de+Westbury+Montr%C3%A9al+QC" target="_blank" rel="noopener noreferrer"><span id="location-text">YMHA Gym, 5400 Av de Westbury</span></a>
         </p>
-      </div>
-    </section>
-
-    <section id="contact">
-      <h2>Contact</h2>
-      <div class="grid contact-grid">
-        <div class="card">
-          <p><strong>Email:</strong> <a id="email-link" href="mailto:">ciwc2001@gmail.com</a></p>
-          <p><strong>Instagram:</strong> <a id="insta-link" href="#" rel="noopener">@concordiaweightlifting</a></p>
-          <p><strong>Address:</strong> <span id="address-text"></span></p>
+        <div class="card schedule-card">
+          <table class="schedule">
+            <thead>
+              <tr>
+                <th scope="col">Day</th>
+                <th scope="col">Time</th>
+                <th scope="col">Location</th>
+              </tr>
+            </thead>
+            <tbody id="schedule-body"></tbody>
+          </table>
         </div>
-        <div class="card">
-          <h3>Inquiry Form</h3>
-          <p><a data-inquiry-link href="inquiry/">Sign-up / Inquiry Form ↗</a></p>
-        </div>
-      </div>
-    </section>
+      </section>
 
+      <section id="about">
+        <h2>About the Club</h2>
+        <div class="card about-card">
+          <img src="images/john-cj.jpg" alt="Club founder John Margolis completing a clean and jerk at a competition" class="about-photo" width="900" height="680" loading="lazy" decoding="async" />
+          <div class="about-text">
+            <p>
+              We are a community club focused on Olympic weightlifting. Founded in 2002 by John Margolis,
+              we have trained athletes of all ages and backgrounds. Everyone is welcome, from beginners to
+              national competitors.
+            </p>
+            <p>Drop in for a trial session or to chat with our athletes.</p>
+            <a class="btn small" data-inquiry-link href="inquiry/">Ask About a Trial</a>
+          </div>
+        </div>
+      </section>
+
+      <section id="videos">
+        <h2>Latest Videos</h2>
+        <div class="card videos-card">
+          <div class="videos-inner">
+
+            <div class="video-col">
+              <div class="portrait-frame">
+                <iframe
+                  id="playlist-player"
+                  title="CIWC YouTube playlist"
+                  allowfullscreen
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  loading="lazy"
+                  referrerpolicy="strict-origin-when-cross-origin">
+                </iframe>
+              </div>
+            </div>
+
+            <div class="quote-panel">
+              <figure class="quote-display">
+                <div class="quote-bar" aria-hidden="true"></div>
+                <div class="quote-content" aria-live="polite">
+                  <blockquote id="quote-text" class="quote-text"></blockquote>
+                  <figcaption id="quote-author" class="quote-author"></figcaption>
+                </div>
+              </figure>
+              <div class="quote-controls" hidden>
+                <div class="quote-arrows">
+                  <button type="button" class="arrow-btn" id="quote-prev" aria-label="Previous quote">&#8592;</button>
+                  <button type="button" class="arrow-btn" id="quote-next" aria-label="Next quote">&#8594;</button>
+                </div>
+                <div id="quote-dots" class="quote-dots" aria-label="Choose a quote"></div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+        <noscript>
+          <div class="card noscript-note">Enable JavaScript to see the video playlist.</div>
+        </noscript>
+      </section>
+
+      <section id="sponsors">
+        <h2>Our Sponsors</h2>
+        <div class="sponsor-grid" id="sponsor-grid"></div>
+        <div class="sponsor-pitch">
+          <p>
+            Thank you to our sponsors for supporting community sport and Olympic weightlifting.
+            Interested in supporting the club? We would be glad to feature you here.
+          </p>
+          <a class="btn ghost small" id="sponsor-link" href="mailto:ciwc2001@gmail.com?subject=Sponsoring%20CIWC">Become a Sponsor</a>
+        </div>
+      </section>
+
+      <section id="contact">
+        <h2>Contact</h2>
+        <div class="grid contact-grid">
+          <div class="card">
+            <ul class="contact-list">
+              <li>
+                <span class="contact-label">Email</span>
+                <a id="email-link" href="mailto:ciwc2001@gmail.com">ciwc2001@gmail.com</a>
+              </li>
+              <li>
+                <span class="contact-label">Instagram</span>
+                <a id="insta-link" href="https://www.instagram.com/concordiaweightlifting/" target="_blank" rel="noopener noreferrer">@concordiaweightlifting</a>
+              </li>
+              <li>
+                <span class="contact-label">Address</span>
+                <a id="address-link" href="https://www.google.com/maps/search/?api=1&amp;query=5400+Av+de+Westbury+Montr%C3%A9al+QC" target="_blank" rel="noopener noreferrer"><span id="address-text">5400 Av de Westbury, Montréal, QC H3W 2Y8</span></a>
+              </li>
+            </ul>
+          </div>
+          <div class="card contact-cta">
+            <h3>New to weightlifting?</h3>
+            <p class="muted">Tell us about your goals and experience and we will help you get started.</p>
+            <a class="btn" data-inquiry-link href="inquiry/">Send an Inquiry</a>
+          </div>
+        </div>
+      </section>
+
+    </div>
   </main>
 
   <footer>
-    <div class="container">
-      <p>© <span id="year"></span> CIWC. All rights reserved.</p>
+    <div class="container footer-inner">
+      <p>© <span id="year">2026</span> Concordia International Weightlifting Club</p>
+      <p class="footer-links">
+        <a data-email-link href="mailto:ciwc2001@gmail.com">Email</a>
+        <a data-insta-link href="https://www.instagram.com/concordiaweightlifting/" target="_blank" rel="noopener noreferrer">Instagram</a>
+        <a data-channel-link href="https://www.youtube.com/channel/UC3EnVXpZZ2f3pTmMMZJzWLg">YouTube</a>
+      </p>
     </div>
   </footer>
 

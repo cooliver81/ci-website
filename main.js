@@ -2,6 +2,8 @@
 const CONFIG = {
   shortName: "CIWC",
   fullName: "Concordia International Weightlifting Club",
+  siteUrl: "https://ciweightlifting.ca/",
+  foundingYear: "2002",
 
   channelId: "UC3EnVXpZZ2f3pTmMMZJzWLg",
   playlistId: "PLV42tu4VffDrEOQEEcd4ID1bu-QPQqk9e",
@@ -9,34 +11,36 @@ const CONFIG = {
   links: {
     email: "ciwc2001@gmail.com",
     instagram: "https://www.instagram.com/concordiaweightlifting/",
-    address: "5400 Av de Westbury, Montréal, QC H3W 2Y8",
     contactForm: "inquiry/"
   },
 
+  location: {
+    name: "YMHA Gym",
+    street: "5400 Av de Westbury",
+    city: "Montréal",
+    region: "QC",
+    postalCode: "H3W 2Y8"
+  },
+
+  // Times are shown as written; `opens`/`closes` (24h) feed the search-engine data.
   schedule: [
-    { day: "Monday",    time: "4:00 PM–8:00 PM",  location: "YMHA Gym" },
-    { day: "Wednesday", time: "4:00 PM–8:00 PM",  location: "YMHA Gym" },
-    { day: "Thursday",  time: "4:00 PM–8:00 PM",  location: "YMHA Gym" },
-    { day: "Saturday",  time: "9:00 AM–12:00 PM", location: "YMHA Gym" }
+    { day: "Monday",    time: "4:00 PM–8:00 PM",  opens: "16:00", closes: "20:00" },
+    { day: "Wednesday", time: "4:00 PM–8:00 PM",  opens: "16:00", closes: "20:00" },
+    { day: "Thursday",  time: "4:00 PM–8:00 PM",  opens: "16:00", closes: "20:00" },
+    { day: "Saturday",  time: "9:00 AM–12:00 PM", opens: "09:00", closes: "12:00" }
   ],
 
   sponsors: [
-    { name: "Jean Coutu",          note: "Queen Mary",        logo: "images/sponsor-jean-coutu.png" },
-    { name: "TD Canada Trust",     note: "Queen Mary",        logo: "images/sponsor-td.png" },
-    { name: "MNA Elisabeth Prass", note: "",                  logo: "images/sponsor-elisabeth-prass.png" },
-    { name: "MNA Michelle Setlakwe", note: "",                 logo: "images/sponsor-elisabeth-prass.png" },
-    { name: "City of Montréal",    note: "Borough CDN–NDG",   logo: "images/sponsor-cdn-ndg.png" }
+    { name: "Jean Coutu",            note: "Queen Mary",      logo: "images/sponsor-jean-coutu.png" },
+    { name: "TD Canada Trust",       note: "Queen Mary",      logo: "images/sponsor-td.png" },
+    { name: "MNA Elisabeth Prass",   note: "",                logo: "images/sponsor-assemblee-nationale.png" },
+    { name: "MNA Michelle Setlakwe", note: "",                logo: "images/sponsor-assemblee-nationale.png" },
+    { name: "City of Montréal",      note: "Borough CDN–NDG", logo: "images/sponsor-cdn-ndg.png" }
   ],
 
+  // Add more quotes to turn on the arrows, dots and auto-rotation.
   quotes: [
-    {
-      text: "Perseverance, Sustained Effort, Ingenuity and Patience.",
-      author: "Lionel St-Jean"
-    },
-    // {
-    //   text: "If you are afraid - don't go. If you go - don't be afraid.",
-    //   author: "John Margolis"
-    // }
+    { text: "Perseverance, Sustained Effort, Ingenuity and Patience.", author: "Lionel St-Jean" }
   ],
 
   quoteIntervalMs: 10000
@@ -66,6 +70,15 @@ function setExternal(el) {
   el.rel = "noopener noreferrer";
 }
 
+function fullAddress() {
+  const l = CONFIG.location;
+  return `${l.street}, ${l.city}, ${l.region} ${l.postalCode}`;
+}
+
+function mapsUrl() {
+  return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(fullAddress())}`;
+}
+
 /* ── YouTube ─────────────────────────────────────────── */
 function initYouTube() {
   const channelUrl = CONFIG.channelId
@@ -78,14 +91,12 @@ function initYouTube() {
   if (!iframe || !CONFIG.playlistId) return;
 
   const params = new URLSearchParams({
-    listType: "playlist",
     list: CONFIG.playlistId,
     rel: "0",
-    modestbranding: "1",
     playsinline: "1"
   });
 
-  iframe.src = `https://www.youtube.com/embed?${params.toString()}`;
+  iframe.src = `https://www.youtube-nocookie.com/embed/videoseries?${params.toString()}`;
 }
 
 /* ── Schedule ────────────────────────────────────────── */
@@ -95,11 +106,15 @@ function initSchedule() {
 
   tbody.innerHTML = CONFIG.schedule.map(row => `
     <tr>
-      <td data-label="Day"><span>${escapeHtml(row.day)}</span></td>
-      <td data-label="Time"><span>${escapeHtml(row.time)}</span></td>
-      <td data-label="Location"><span>${escapeHtml(row.location)}</span></td>
+      <th scope="row" class="sched-day">${escapeHtml(row.day)}</th>
+      <td class="sched-time">${escapeHtml(row.time)}</td>
+      <td class="sched-loc">${escapeHtml(row.location || CONFIG.location.name)}</td>
     </tr>
   `).join("");
+
+  const locLink = $("#location-link");
+  safeHref(locLink, mapsUrl());
+  safeText($("#location-text"), `${CONFIG.location.name}, ${CONFIG.location.street}`);
 }
 
 /* ── Sponsors ────────────────────────────────────────── */
@@ -110,29 +125,73 @@ function initSponsors() {
   grid.innerHTML = CONFIG.sponsors.map(s => `
     <div class="sponsor-card">
       <img class="sponsor-logo" src="${escapeHtml(s.logo)}" alt="${escapeHtml(s.name)} logo"
-           loading="lazy" onerror="this.style.display='none'">
+           width="64" height="64" loading="lazy" decoding="async">
       <p class="sponsor-name">${escapeHtml(s.name)}</p>
       ${s.note ? `<p class="sponsor-note">${escapeHtml(s.note)}</p>` : ""}
     </div>
   `).join("");
+
+  $$(".sponsor-logo", grid).forEach(img =>
+    img.addEventListener("error", () => { img.style.display = "none"; }, { once: true })
+  );
 }
 
 /* ── Contact ─────────────────────────────────────────── */
 function initContact() {
-  const emailEl = $("#email-link");
-  if (emailEl && CONFIG.links.email) {
-    safeHref(emailEl, `mailto:${CONFIG.links.email}`);
-    safeText(emailEl, CONFIG.links.email);
+  const { email, instagram, contactForm } = CONFIG.links;
+
+  if (email) {
+    const emailEl = $("#email-link");
+    safeHref(emailEl, `mailto:${email}`);
+    safeText(emailEl, email);
+    $$("[data-email-link]").forEach(a => safeHref(a, `mailto:${email}`));
+    safeHref($("#sponsor-link"), `mailto:${email}?subject=${encodeURIComponent("Sponsoring CIWC")}`);
   }
 
-  const instaEl = $("#insta-link");
-  if (instaEl && CONFIG.links.instagram) {
-    safeHref(instaEl, CONFIG.links.instagram);
-    setExternal(instaEl);
+  if (instagram) {
+    [$("#insta-link"), ...$$("[data-insta-link]")].forEach(a => { safeHref(a, instagram); setExternal(a); });
   }
 
-  safeText($("#address-text"), CONFIG.links.address);
-  $$("[data-inquiry-link]").forEach(a => safeHref(a, CONFIG.links.contactForm));
+  safeText($("#address-text"), fullAddress());
+  safeHref($("#address-link"), mapsUrl());
+  $$("[data-inquiry-link]").forEach(a => safeHref(a, contactForm));
+}
+
+/* ── Structured data (helps search engines show hours/address) ── */
+function initStructuredData() {
+  const l = CONFIG.location;
+  const data = {
+    "@context": "https://schema.org",
+    "@type": "SportsClub",
+    name: CONFIG.fullName,
+    alternateName: CONFIG.shortName,
+    url: CONFIG.siteUrl,
+    logo: new URL("images/icon-192.png", CONFIG.siteUrl).href,
+    image: new URL("images/og-image.jpg", CONFIG.siteUrl).href,
+    email: CONFIG.links.email,
+    foundingDate: CONFIG.foundingYear,
+    sport: "Olympic weightlifting",
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: l.street,
+      addressLocality: l.city,
+      addressRegion: l.region,
+      postalCode: l.postalCode,
+      addressCountry: "CA"
+    },
+    openingHoursSpecification: CONFIG.schedule
+      .filter(s => s.opens && s.closes)
+      .map(s => ({ "@type": "OpeningHoursSpecification", dayOfWeek: s.day, opens: s.opens, closes: s.closes })),
+    sameAs: [
+      CONFIG.links.instagram,
+      CONFIG.channelId && `https://www.youtube.com/channel/${CONFIG.channelId}`
+    ].filter(Boolean)
+  };
+
+  const script = document.createElement("script");
+  script.type = "application/ld+json";
+  script.textContent = JSON.stringify(data);
+  document.head.appendChild(script);
 }
 
 /* ── Mobile menu ─────────────────────────────────────── */
@@ -153,7 +212,9 @@ function initMobileMenu() {
     if (!nav.contains(e.target) && !btn.contains(e.target)) close();
   });
 
-  document.addEventListener("keydown", e => { if (e.key === "Escape") close(); });
+  document.addEventListener("keydown", e => {
+    if (e.key === "Escape" && nav.dataset.open === "true") { close(); btn.focus(); }
+  });
 
   window.addEventListener("resize", () => {
     if (window.matchMedia("(min-width: 861px)").matches) close();
@@ -163,35 +224,40 @@ function initMobileMenu() {
 /* ── Quote carousel ──────────────────────────────────── */
 let currentQuote = 0;
 let quoteTimer = null;
+let quotePaused = false;
+
+const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 
 function renderQuote(index, animate) {
   const quotes = CONFIG.quotes;
   const textEl = $("#quote-text");
   const authorEl = $("#quote-author");
   const dotsEl = $("#quote-dots");
-  if (!textEl || !authorEl || !dotsEl) return;
+  if (!textEl || !authorEl) return;
 
-  if (animate) {
-    textEl.style.opacity = "0";
-    authorEl.style.opacity = "0";
-    setTimeout(() => {
-      textEl.textContent = quotes[index].text;
-      authorEl.textContent = quotes[index].author;
-      textEl.style.opacity = "1";
-      authorEl.style.opacity = "1";
-    }, 350);
-  } else {
+  const show = () => {
     textEl.textContent = quotes[index].text;
     authorEl.textContent = quotes[index].author;
+    textEl.style.opacity = "1";
+    authorEl.style.opacity = "1";
+  };
+
+  if (animate && !reduceMotion.matches) {
+    textEl.style.opacity = "0";
+    authorEl.style.opacity = "0";
+    setTimeout(show, 350);
+  } else {
+    show();
   }
 
+  if (!dotsEl || quotes.length < 2) return;
   dotsEl.innerHTML = "";
   quotes.forEach((_, i) => {
     const dot = document.createElement("button");
+    dot.type = "button";
     dot.className = "quote-dot" + (i === index ? " active" : "");
     dot.setAttribute("aria-label", `Quote ${i + 1} of ${quotes.length}`);
-    dot.setAttribute("role", "tab");
-    dot.setAttribute("aria-selected", String(i === index));
+    if (i === index) dot.setAttribute("aria-current", "true");
     dot.addEventListener("click", () => goToQuote(i));
     dotsEl.appendChild(dot);
   });
@@ -209,18 +275,38 @@ function moveQuote(dir) {
 
 function resetQuoteTimer() {
   clearInterval(quoteTimer);
+  if (reduceMotion.matches || quotePaused) return;
   quoteTimer = setInterval(() => moveQuote(1), CONFIG.quoteIntervalMs);
 }
 
 function initQuotes() {
-  if (!CONFIG.quotes || CONFIG.quotes.length === 0) return;
+  const quotes = CONFIG.quotes;
+  if (!quotes || quotes.length === 0) return;
   renderQuote(0, false);
-  resetQuoteTimer();
+
+  // A single quote needs no controls or rotation.
+  if (quotes.length < 2) return;
+
+  const controls = $(".quote-controls");
+  if (controls) controls.hidden = false;
 
   const prev = $("#quote-prev");
   const next = $("#quote-next");
   if (prev) prev.addEventListener("click", () => moveQuote(-1));
   if (next) next.addEventListener("click", () => moveQuote(1));
+
+  // Pause rotation while the visitor is reading or using the controls.
+  const panel = $(".quote-panel");
+  if (panel) {
+    const pause  = () => { quotePaused = true;  clearInterval(quoteTimer); };
+    const resume = () => { quotePaused = false; resetQuoteTimer(); };
+    panel.addEventListener("mouseenter", pause);
+    panel.addEventListener("mouseleave", resume);
+    panel.addEventListener("focusin", pause);
+    panel.addEventListener("focusout", resume);
+  }
+
+  resetQuoteTimer();
 }
 
 /* ── Brand / hero text ───────────────────────────────── */
@@ -238,6 +324,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initSchedule();
   initSponsors();
   initContact();
+  initStructuredData();
   initMobileMenu();
   initQuotes();
 });

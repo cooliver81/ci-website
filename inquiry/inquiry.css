@@ -4,7 +4,7 @@
    ────────────────────────────────────────────────── */
 
 .inquiry-main {
-  padding: 40px 0;
+  padding: 40px var(--px);
   max-width: 860px;
 }
 
@@ -63,10 +63,27 @@ textarea {
   background: #0f0d10;
   color: var(--text);
   font-family: inherit;
-  font-size: 15px;
-  outline: none;
+  font-size: 16px; /* 16px stops iOS Safari zooming in on focus */
   transition: border-color 0.2s, box-shadow 0.2s;
 }
+
+input[aria-invalid="true"],
+textarea[aria-invalid="true"] {
+  border-color: #fb923c;
+}
+
+.form-note {
+  margin: 0;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+button[type="submit"]:disabled {
+  opacity: 0.7;
+  cursor: progress;
+}
+
+.alert:focus { outline: none; }
 
 input::placeholder,
 textarea::placeholder {
@@ -78,6 +95,14 @@ select:focus,
 textarea:focus {
   border-color: rgba(239, 68, 68, 0.55);
   box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.15);
+}
+
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 1px;
+  border-radius: 14px;
 }
 
 textarea {
