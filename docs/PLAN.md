@@ -17,7 +17,8 @@ steps without changing the stack (static HTML/CSS/JS on GitHub Pages).
 
 ## Status
 
-Milestone 1 merged and live (PR #1). Follow-up on branch `fix/no-trial-sessions`.
+Milestone 1 merged and live (PR #1). Session 2's first two commits (trial wording, README) are already on `main`
+(they reached it without a PR). The rest of session 2 is on branch `fix/no-trial-sessions`, waiting for a PR.
 
 Decisions:
 - Founding year is 2002. The `ciwc2001@` address is just the mailbox name and stays.
@@ -63,3 +64,6 @@ Still open: the content gaps in milestone 4.
   inquiry link. The page order is now About → Videos → Schedule → Sponsors. The inquiry link appeared 4 times
   with 4 different labels; it's now "Get in Touch" in the nav and hero, plus an inline link in About.
   The footer shows the email address itself, since it's the only place left to find it.
+- Cleanup check: no trial wording or links to the removed Contact section remain, and main.js and style.css have no
+  dead code. The nav link on the inquiry and 404 pages said "Inquiry"; it now says "Get in Touch" like the home page.
+  Checked at 390px: no horizontal overflow, and the nav fits.
