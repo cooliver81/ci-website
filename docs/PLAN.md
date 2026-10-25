@@ -17,14 +17,17 @@ steps without changing the stack (static HTML/CSS/JS on GitHub Pages).
 
 ## Status
 
-Milestone 1 merged and live (PR #1). Follow-up on branch `fix/no-trial-sessions`.
+Milestone 1 merged and live (PR #1). Session 2's first two commits (trial wording, README) are already on `main`
+(they reached it without a PR). The rest of session 2 is on branch `fix/no-trial-sessions`, waiting for a PR.
 
 Decisions:
 - Founding year is 2002. The `ciwc2001@` address is just the mailbox name and stays.
 - The unused images in `images/` stay for now.
-- The club does not offer trial sessions. Calls to action say "Get in Touch" / "Contact Us".
+- The club does not offer trial sessions. The single call to action is "Get in Touch".
 - No code licence. Default copyright (all rights reserved) applies, and the README notes that photos and logos
   aren't for reuse. Revisit only if someone asks to reuse the code.
+- `CLAUDE.md` stays committed. It holds the rules for this repo (`main` is production, no invented club facts),
+  so it belongs with the code.
 
 Still open: the content gaps in milestone 4.
 
@@ -57,3 +60,10 @@ Still open: the content gaps in milestone 4.
   the About button "Contact Us", and the meta descriptions, inquiry intro and README were updated to match.
   Session 1's "trial session" call to action was wrong.
 - Cut the README down to what the site is (no screenshots, setup or deployment notes) and removed `docs/screenshots/`.
+- Simplified the home page. Removed the Contact section, which repeated the address, Instagram, YouTube and the
+  inquiry link. The page order is now About → Videos → Schedule → Sponsors. The inquiry link appeared 4 times
+  with 4 different labels; it's now "Get in Touch" in the nav and hero, plus an inline link in About.
+  The footer shows the email address itself, since it's the only place left to find it.
+- Cleanup check: no trial wording or links to the removed Contact section remain, and main.js and style.css have no
+  dead code. The nav link on the inquiry and 404 pages said "Inquiry"; it now says "Get in Touch" like the home page.
+  Checked at 390px: no horizontal overflow, and the nav fits.

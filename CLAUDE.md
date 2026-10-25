@@ -9,12 +9,12 @@ Static site for the Concordia International Weightlifting Club, live at https://
    Oliver merge it.
 2. **No build step, no framework, no dependencies.** Plain HTML/CSS/JS that a volunteer can edit on GitHub.
    Tooling used only to check the site (screenshots, tests) stays out of the shipped files.
-3. **Content changes go in `CONFIG` at the top of `main.js`**, not in the HTML. Exception: the email,
-   Instagram and address also appear as static fallbacks in `index.html` so they work without JS;
-   keep both in sync.
+3. **Content changes go in `CONFIG` at the top of `main.js`**, not in the HTML. Exception: the email and
+   Instagram (footer) and the address (under the schedule heading) also appear as static fallbacks in
+   `index.html` so they work without JS; keep both in sync.
 4. **Don't invent club facts** (prices, coaches, age policy, affiliations). Ask Oliver.
-   The club does **not** offer trial sessions: calls to action say "Get in Touch" / "Contact Us"
-   and link to the inquiry page.
+   The club does **not** offer trial sessions. The one call to action is "Get in Touch" (nav and hero),
+   linking to the inquiry page. Don't add more buttons with other names for the same thing.
 5. **Images:** lowercase-kebab-case file names, sized for their display size (roughly 2× for retina),
    and with `width`/`height` attributes on `<img>`. Nothing over ~200 KB without a reason.
 6. Header and footer markup is duplicated across `index.html`, `inquiry/index.html` and `404.html`.

@@ -490,6 +490,8 @@ table.schedule thead th {
 }
 
 table.schedule tbody th { font-weight: 800; }
+table.schedule .sched-time,
+table.schedule thead th:last-child { text-align: right; }
 table.schedule tbody tr { border-bottom: 1px solid var(--border); }
 table.schedule tbody tr:last-child { border-bottom: none; }
 
@@ -552,40 +554,13 @@ table.schedule tbody tr:last-child { border-bottom: none; }
   flex-shrink: 0;
 }
 
-.about-text { display: flex; flex-direction: column; align-items: flex-start; gap: 4px; }
-.about-text .btn { margin-top: 12px; }
+.about-text { display: flex; flex-direction: column; gap: 4px; }
+.about-text a { color: var(--text); font-weight: 700; }
 
 @media (max-width: 600px) {
   .about-card { flex-direction: column; }
   .about-photo { width: 100%; height: 240px; object-position: center 20%; }
 }
-
-/* ── Contact ──────────────────────────────────────────── */
-.grid { display: grid; gap: 16px; }
-.contact-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-
-.contact-list { list-style: none; margin: 0; padding: 0; }
-.contact-list li {
-  display: flex;
-  flex-direction: column;
-  padding: 8px 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-}
-.contact-list li:first-child { padding-top: 0; }
-.contact-list li:last-child { border-bottom: none; padding-bottom: 0; }
-.contact-list a { padding: 4px 0; overflow-wrap: anywhere; }
-
-.contact-label {
-  color: var(--muted);
-  font-size: 11px;
-  font-weight: 900;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-}
-
-.contact-cta { display: flex; flex-direction: column; align-items: flex-start; }
-.contact-cta .btn { margin-top: auto; }
-.contact-cta p { margin-bottom: 14px; }
 
 /* ── Footer ───────────────────────────────────────────── */
 footer {
@@ -685,16 +660,14 @@ footer p { margin: 0; }
   .quote-author { font-size: 1.05rem; }
   .quote-bar { height: 72px; }
 
-  .contact-grid { grid-template-columns: 1fr; }
 }
 
 @media (max-width: 700px) {
   /* One compact row per day; location is stated above the table */
-  table.schedule thead,
-  table.schedule .sched-loc { display: none; }
+  table.schedule thead { display: none; }
   table.schedule th,
   table.schedule td { padding: 14px 4px; }
-  table.schedule .sched-time { text-align: right; font-weight: 700; white-space: nowrap; }
+  table.schedule .sched-time { font-weight: 700; white-space: nowrap; }
   .schedule-card { padding: 4px 14px; }
 }
 

@@ -108,13 +108,12 @@ function initSchedule() {
     <tr>
       <th scope="row" class="sched-day">${escapeHtml(row.day)}</th>
       <td class="sched-time">${escapeHtml(row.time)}</td>
-      <td class="sched-loc">${escapeHtml(row.location || CONFIG.location.name)}</td>
     </tr>
   `).join("");
 
   const locLink = $("#location-link");
   safeHref(locLink, mapsUrl());
-  safeText($("#location-text"), `${CONFIG.location.name}, ${CONFIG.location.street}`);
+  safeText($("#location-text"), `${CONFIG.location.name}, ${fullAddress()}`);
 }
 
 /* ── Sponsors ────────────────────────────────────────── */
@@ -141,19 +140,14 @@ function initContact() {
   const { email, instagram, contactForm } = CONFIG.links;
 
   if (email) {
-    const emailEl = $("#email-link");
-    safeHref(emailEl, `mailto:${email}`);
-    safeText(emailEl, email);
-    $$("[data-email-link]").forEach(a => safeHref(a, `mailto:${email}`));
+    $$("[data-email-link]").forEach(a => { safeHref(a, `mailto:${email}`); safeText(a, email); });
     safeHref($("#sponsor-link"), `mailto:${email}?subject=${encodeURIComponent("Sponsoring CIWC")}`);
   }
 
   if (instagram) {
-    [$("#insta-link"), ...$$("[data-insta-link]")].forEach(a => { safeHref(a, instagram); setExternal(a); });
+    $$("[data-insta-link]").forEach(a => { safeHref(a, instagram); setExternal(a); });
   }
 
-  safeText($("#address-text"), fullAddress());
-  safeHref($("#address-link"), mapsUrl());
   $$("[data-inquiry-link]").forEach(a => safeHref(a, contactForm));
 }
 
